@@ -21,15 +21,11 @@ public class EmployeeRepository {
         return Arrays.asList(anna, billy, steve, magda);
     }
 
-    public void save(Employee employee){
-        try {
-            String serializedEmployee = employee.serialize();
-            Path path = Paths.get(employee.getFullName()
-                    .replace(" ","_") + ".rec");
-            Files.write(path, serializedEmployee.getBytes());
-            System.out.println("Saved employee " + employee.toString());
-        } catch (IOException e){
-            System.out.println("ERROR: Could not save employee. " + e);
-        }
+    public void save(Employee employee) throws IOException{
+        String serializedEmployee = employee.serialize();
+        Path path = Paths.get(employee.getFullName()
+                .replace(" ","_") + ".rec");
+        Files.write(path, serializedEmployee.getBytes());
+        System.out.println("Saved employee " + employee.toString());
     }
 }
