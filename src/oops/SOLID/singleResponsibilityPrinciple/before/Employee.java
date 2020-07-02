@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 /*
 Models an employee form a business perspective
  */
-public abstract class Employee {
+public abstract class Employee implements Serializable {
     private String firstName;
     private String lastName;
     private int monthlyIncome;
@@ -61,5 +61,25 @@ public abstract class Employee {
 
     public String getFullName(){
         return this.firstName + " " + this.lastName;
+    }
+
+    @Override
+    public String serialize() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("### EMPLOYEE RECORD ####");
+        sb.append(System.lineSeparator());
+        sb.append("NAME: ");
+        sb.append(this.getFullName());
+        sb.append(System.lineSeparator());
+        sb.append("POSITION: ");
+        sb.append(this.getClass().getTypeName());
+        sb.append(System.lineSeparator());
+        sb.append("EMAIL: ");
+        sb.append(this.getEmail());
+        sb.append(System.lineSeparator());
+        sb.append("MONTHLY WAGE: ");
+        sb.append(this.getMonthlyIncome());
+        sb.append(System.lineSeparator());
+        return sb.toString();
     }
 }
