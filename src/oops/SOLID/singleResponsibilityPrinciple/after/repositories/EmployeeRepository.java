@@ -1,4 +1,4 @@
-package oops.SOLID.singleResponsibilityPrinciple.after.repository;
+package oops.SOLID.singleResponsibilityPrinciple.after.repositories;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,6 +10,7 @@ import java.util.List;
 import oops.SOLID.singleResponsibilityPrinciple.after.employees.Employee;
 import oops.SOLID.singleResponsibilityPrinciple.after.employees.FullTimeEmployee;
 import oops.SOLID.singleResponsibilityPrinciple.after.employees.PartTimeEmployee;
+import oops.SOLID.singleResponsibilityPrinciple.after.serializers.EmployeeFileSerializer;
 
 public class EmployeeRepository {
 
@@ -27,25 +28,12 @@ public class EmployeeRepository {
     
     public static void save(Employee employee){
         try {
-            StringBuilder sb = new StringBuilder();
-            sb.append("### EMPLOYEE RECORD ####");
-            sb.append(System.lineSeparator());
-            sb.append("NAME: ");
-            sb.append(employee.getFullName());
-            sb.append(System.lineSeparator());
-            sb.append("POSITION: ");
-            sb.append(employee.getClass().getTypeName());
-            sb.append(System.lineSeparator());
-            sb.append("EMAIL: ");
-            sb.append(employee.getEmail());
-            sb.append(System.lineSeparator());
-            sb.append("MONTHLY WAGE: ");
-            sb.append(employee.getMonthlyIncome());
-            sb.append(System.lineSeparator());
+        	EmployeeFileSerializer employeeFileSerializer = new EmployeeFileSerializer();
+            String employeeSerialized = employeeFileSerializer.serialize(employee);
 
             Path path = Paths.get(employee.getFullName()
                     .replace(" ","_") + ".rec");
-            Files.write(path, sb.toString().getBytes());
+            Files.write(path, employeeSerialized.toString().getBytes());
 
             System.out.println("Saved employee " + employee.toString());
         } catch (IOException e){
