@@ -14,6 +14,8 @@ public abstract class Employee {
     private int monthlyIncome;
     private int nbHoursPerWeek;
 
+    private static Logger logger = new Logger(Employee.class);
+
     public Employee(String fullName, int monthlyIncome){
         setMonthlyIncome(monthlyIncome);
 
@@ -85,9 +87,9 @@ public abstract class Employee {
                     .replace(" ","_") + ".rec");
             Files.write(path, sb.toString().getBytes());
 
-            System.out.println("Saved employee " + employee.toString());
+            logger.log("Saved employee " + employee);
         } catch (IOException e){
-            System.out.println("ERROR: Could not save employee. " + e);
+            logger.error("ERROR: Could not save employee.",  e);
         }
     }
 }
