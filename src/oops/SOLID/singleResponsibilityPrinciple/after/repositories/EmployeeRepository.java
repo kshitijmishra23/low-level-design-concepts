@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.imageio.IIOException;
+
 import oops.SOLID.singleResponsibilityPrinciple.after.employees.Employee;
 import oops.SOLID.singleResponsibilityPrinciple.after.employees.FullTimeEmployee;
 import oops.SOLID.singleResponsibilityPrinciple.after.employees.PartTimeEmployee;
@@ -26,18 +28,13 @@ public class EmployeeRepository {
         return Arrays.asList(anna, billy, steve, magda);
     }
     
-    public static void save(Employee employee){
-        try {
+    public void save(Employee employee) throws IOException{
+       
         	EmployeeFileSerializer employeeFileSerializer = new EmployeeFileSerializer();
             String employeeSerialized = employeeFileSerializer.serialize(employee);
 
             Path path = Paths.get(employee.getFullName()
                     .replace(" ","_") + ".rec");
-            Files.write(path, employeeSerialized.toString().getBytes());
-
-            System.out.println("Saved employee " + employee.toString());
-        } catch (IOException e){
-            System.out.println("ERROR: Could not save employee. " + e);
-        }
+            Files.write(path, employeeSerialized.getBytes());
     }
 }
