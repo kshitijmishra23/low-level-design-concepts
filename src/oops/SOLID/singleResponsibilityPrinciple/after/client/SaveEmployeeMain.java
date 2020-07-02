@@ -11,22 +11,22 @@ import oops.SOLID.singleResponsibilityPrinciple.after.repositories.EmployeeRepos
 
 public class SaveEmployeeMain {
 
-	 public static void main(String[] args) {
-	        // Grab employees
-	        EmployeeRepository repository = new EmployeeRepository();
-	        List<Employee> employees = repository.findAll();
-	        
-	        ConsoleLogger consoleLogger = new ConsoleLogger();
-	        
-	        // Save all
-	        for (Employee e : employees){
-	        	try {
-					repository.save(e);
-					consoleLogger.writeInfo("Saved employee " + e.toString());
-				} catch (IOException exception) {
-					exception.printStackTrace();
-					consoleLogger.writeError("Error saving employee", exception);
-				}
-	        }
-	    }
+	public static void main(String[] args) {
+		// Grab employees
+		EmployeeRepository repository = new EmployeeRepository();
+		List<Employee> employees = repository.findAll();
+
+		ConsoleLogger consoleLogger = new ConsoleLogger();
+
+		// Save all
+		for (Employee e : employees){
+			try {
+				repository.save(e);
+				consoleLogger.writeInfo("Saved employee " + e.toString());
+			} catch (IOException exception) {
+				exception.printStackTrace();
+				consoleLogger.writeError("Error saving employee", exception);
+			}
+		}
+	}
 }
