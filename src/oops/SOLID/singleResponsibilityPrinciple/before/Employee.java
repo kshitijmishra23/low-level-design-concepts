@@ -23,8 +23,6 @@ public abstract class Employee {
 
     private int nbHoursPerWeek;
 
-    private static Logger logger = new Logger(Employee.class);
-
     public Employee(String fullName, int monthlyIncome){
         setMonthlyIncome(monthlyIncome);
 
