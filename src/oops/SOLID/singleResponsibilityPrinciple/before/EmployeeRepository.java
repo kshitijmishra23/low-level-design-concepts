@@ -25,12 +25,8 @@ public class EmployeeRepository {
 
   public static void save(Employee employee) {
     try {
-      String sb = EmployeeSerializer.serialize(employee);
-
-      Path path = Paths.get(employee.getFullName()
-          .replace(" ", "_") + ".rec");
-      Files.write(path, sb.getBytes());
-
+      String serializedEmployee = EmployeeSerializer.serialize(employee);
+      PersistenceManager.persist(employee.getFullName(), serializedEmployee);
       logger.log("Saved employee " + employee);
     } catch (IOException e) {
       logger.error("ERROR: Could not save employee.", e);
