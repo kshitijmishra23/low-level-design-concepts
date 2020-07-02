@@ -73,18 +73,4 @@ public abstract class Employee {
     public String getFullName(){
         return this.firstName + " " + this.lastName;
     }
-
-    public static void save(Employee employee){
-        try {
-            String sb = EmployeeSerializer.serialize(employee);
-
-            Path path = Paths.get(employee.getFullName()
-                    .replace(" ","_") + ".rec");
-            Files.write(path, sb.getBytes());
-
-            logger.log("Saved employee " + employee);
-        } catch (IOException e){
-            logger.error("ERROR: Could not save employee.",  e);
-        }
-    }
 }

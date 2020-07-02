@@ -1,9 +1,15 @@
 package oops.SOLID.singleResponsibilityPrinciple.before;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
 public class EmployeeRepository {
+
+  private static Logger logger = new Logger(EmployeeRepository.class);
 
     public List<Employee> findAll(){
 
@@ -15,5 +21,19 @@ public class EmployeeRepository {
         Employee magda = new PartTimeEmployee("Magda Iovan", 920);
 
         return Arrays.asList(anna, billy, steve, magda);
+  }
+
+  public static void save(Employee employee) {
+    try {
+      String sb = EmployeeSerializer.serialize(employee);
+
+      Path path = Paths.get(employee.getFullName()
+          .replace(" ", "_") + ".rec");
+      Files.write(path, sb.getBytes());
+
+      logger.log("Saved employee " + employee);
+    } catch (IOException e) {
+      logger.error("ERROR: Could not save employee.", e);
     }
+  }
 }
