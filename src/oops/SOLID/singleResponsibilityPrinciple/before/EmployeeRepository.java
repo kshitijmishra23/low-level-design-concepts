@@ -23,13 +23,9 @@ public class EmployeeRepository {
         return Arrays.asList(anna, billy, steve, magda);
   }
 
-  public static void save(Employee employee) {
-    try {
+  public static void save(Employee employee) throws IOException {
       String serializedEmployee = EmployeeSerializer.serialize(employee);
       PersistenceManager.persist(employee.getFullName(), serializedEmployee);
       logger.log("Saved employee " + employee);
-    } catch (IOException e) {
-      logger.error("ERROR: Could not save employee.", e);
-    }
   }
 }
