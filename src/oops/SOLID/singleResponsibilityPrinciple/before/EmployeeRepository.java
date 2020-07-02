@@ -21,11 +21,9 @@ public class EmployeeRepository {
         return Arrays.asList(anna, billy, steve, magda);
     }
 
-    public static void save(Employee employee) throws IOException {
+    public void save(Employee employee) throws IOException {
         Path path = Paths.get(employee.getFullName()
                 .replace(" ", "_") + ".rec");
         Files.write(path, EmployeeUtil.serializeEmployee(employee).getBytes());
-
-        System.out.println("Saved employee " + employee.toString());
     }
 }

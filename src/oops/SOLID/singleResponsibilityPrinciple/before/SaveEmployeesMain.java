@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.List;
 
 public class SaveEmployeesMain {
+
+    public static final ApplicationLogger logger = new ApplicationLogger();
+
     public static void main(String[] args) {
         // Grab employees
         EmployeeRepository repository = new EmployeeRepository();
@@ -12,9 +15,10 @@ public class SaveEmployeesMain {
         // Save all
         for (Employee e : employees) {
             try {
-                EmployeeRepository.save(e);
+                repository.save(e);
+                logger.info("Saved employee " + e.toString());
             } catch (IOException exception) {
-                System.out.println("ERROR: Could not save employee. " + exception);
+                logger.error("ERROR: Could not save employee.", exception);
             }
         }
     }
