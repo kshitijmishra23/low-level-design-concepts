@@ -14,29 +14,51 @@ import java.util.ArrayList;
  * so objects of ArrayList are not fully replaceable by the objects of stack.   
  * 
  */
-public class StackWrong extends ArrayList<Integer>{
-	private int topPointer = 0;
-	
-	public void push(Integer a) {
-		add(topPointer, a);
-		topPointer++;
-	}	
-	public void pop() {
-		remove(topPointer-1);
-		topPointer--;
-	}
-	public Integer top() {
-		return get(topPointer-1);
-	}
-	
-	public static void main(String[] args) {
-		StackWrong st = new StackWrong();
-		st.push(1);
-		st.push(2);
-		System.out.println(st.top());
-		st.pop();
-		System.out.println(st.top());
-		st.clear();
-		System.out.println(st.top());
-	}
+public class StackWrong {
+
+    private ArrayList<Integer> stack = new ArrayList<>();
+    private int topPointer = 0;
+
+    public void push(Integer a) {
+        stack.add(topPointer, a);
+        topPointer++;
+    }
+
+    public void pop() throws Exception {
+        try {
+            stack.remove(topPointer - 1);
+            topPointer--;
+        } catch (Exception e) {
+            throw new Exception("Couldn't pop an element. Stack is empty.", e);
+        }
+    }
+
+    public Integer top() throws Exception {
+        try {
+            return stack.get(topPointer - 1);
+        } catch (Exception e) {
+            throw new Exception("No top element present. Stack is empty.", e);
+        }
+    }
+
+    public void clear() {
+        stack.clear();
+        topPointer = 0;
+    }
+
+    public static void main(String[] args) {
+        StackWrong st = new StackWrong();
+        st.push(1);
+        st.push(2);
+        try {
+            System.out.println(st.top());
+            st.pop();
+            System.out.println(st.top());
+            st.clear();
+            System.out.println(st.top());
+        } catch (Exception e) {
+            System.out.println("Exception occurred in Stack operations.");
+            e.printStackTrace();
+        }
+    }
 }
