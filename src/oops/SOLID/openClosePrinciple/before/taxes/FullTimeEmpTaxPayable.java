@@ -4,12 +4,12 @@ import oops.SOLID.openClosePrinciple.before.employees.Employee;
 
 public class FullTimeEmpTaxPayable implements TaxPayable{
 
-    private final int INCOME_TAX_PERCENT = 30;
-    private final int PROFESSIONAL_TAX_PERCENT = 2;
-    private final int EDUCATIONAL_CESS_PERCENT = 1;
+    private final double INCOME_TAX_PERCENT = 30;
+    private final double PROFESSIONAL_TAX_PERCENT = 2;
+    private final double EDUCATIONAL_CESS_PERCENT = 1;
 
     @Override
-    public int calculateTax(Employee employee) {
+    public double calculateTax(Employee employee) {
         int monthlySalary = employee.getMonthlyIncome();
         return
                 (INCOME_TAX_PERCENT * monthlySalary)/100

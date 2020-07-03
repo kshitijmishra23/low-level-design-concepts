@@ -4,10 +4,10 @@ import oops.SOLID.openClosePrinciple.before.employees.Employee;
 
 public class InternTaxPayable implements TaxPayable{
 
-    private final int INCOME_TAX_PERCENT = 15;
+    private final double INCOME_TAX_PERCENT = 15;
 
     @Override
-    public int calculateTax(Employee employee) {
+    public double calculateTax(Employee employee) {
 
         int monthlySalary = employee.getMonthlyIncome();
         int annualSalary = monthlySalary * 12;
