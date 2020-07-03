@@ -39,6 +39,11 @@ public abstract class Employee {
         return monthlyIncome;
     }
 
+    public int getYearlyIncome() {
+        //assuming constant income for 12 months
+        return getMonthlyIncome() * 12;
+    }
+
     public void setMonthlyIncome(int monthlyIncome) {
         if(monthlyIncome < 0){
             throw new IllegalArgumentException("Income must be positive");
