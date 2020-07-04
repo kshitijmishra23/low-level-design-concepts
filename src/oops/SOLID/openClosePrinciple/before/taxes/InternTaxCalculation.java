@@ -9,14 +9,8 @@ public class InternTaxCalculation implements TaxCalculator{
 	@Override
 	public double calculate(Employee employee) {
 		// TODO Auto-generated method stub
-		if (employee.getMonthlyIncome()<30000)
-		{
+		if (employee.getMonthlyIncome()*12<30000)
 			return 0;
-		}
-		else
-		{
-			return 
-	                (employee.getMonthlyIncome() * INCOME_TAX_PERCENTAGE) / 100 ;
-		}
+		return (employee.getMonthlyIncome() * INCOME_TAX_PERCENTAGE) / 100 ;
 	}
 }
