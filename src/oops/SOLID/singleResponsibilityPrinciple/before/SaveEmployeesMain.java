@@ -1,5 +1,9 @@
 package oops.SOLID.singleResponsibilityPrinciple.before;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class SaveEmployeesMain {
@@ -9,8 +13,8 @@ public class SaveEmployeesMain {
         List<Employee> employees = repository.findAll();
 
         // Save all
-        for (Employee e : employees){
-            Employee.save(e);
-        }
+		for (Employee e : employees) {
+			repository.save(e);
+		}
     }
 }
