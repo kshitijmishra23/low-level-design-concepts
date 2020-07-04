@@ -1,15 +1,6 @@
 package oops.SOLID.singleResponsibilityPrinciple.before.serializer;
 
-import oops.SOLID.singleResponsibilityPrinciple.before.FullTimeEmployee;
-import oops.SOLID.singleResponsibilityPrinciple.before.PartTimeEmployee;
 import oops.SOLID.singleResponsibilityPrinciple.before.model.Employee;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
 
 public class EmployeeSerializer {
 

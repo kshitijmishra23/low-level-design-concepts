@@ -1,7 +1,9 @@
-package oops.SOLID.singleResponsibilityPrinciple.before;
+package oops.SOLID.singleResponsibilityPrinciple.before.repository;
 
 import oops.SOLID.singleResponsibilityPrinciple.before.config.EmployeeConfig;
 import oops.SOLID.singleResponsibilityPrinciple.before.model.Employee;
+import oops.SOLID.singleResponsibilityPrinciple.before.model.FullTimeEmployee;
+import oops.SOLID.singleResponsibilityPrinciple.before.model.PartTimeEmployee;
 import oops.SOLID.singleResponsibilityPrinciple.before.serializer.EmployeeSerializer;
 
 import java.io.IOException;
