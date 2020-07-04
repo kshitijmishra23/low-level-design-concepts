@@ -1,10 +1,5 @@
 package oops.SOLID.singleResponsibilityPrinciple.before;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
+    
 /*
 Models an employee form a business perspective
  */
