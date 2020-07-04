@@ -1,5 +1,6 @@
 package oops.SOLID.singleResponsibilityPrinciple.before;
 
+import oops.SOLID.singleResponsibilityPrinciple.before.config.EmployeeConfig;
 import oops.SOLID.singleResponsibilityPrinciple.before.model.Employee;
 import oops.SOLID.singleResponsibilityPrinciple.before.serializer.EmployeeSerializer;
 
