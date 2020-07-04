@@ -1,5 +1,8 @@
 package oops.SOLID.singleResponsibilityPrinciple.before;
 
+import oops.SOLID.singleResponsibilityPrinciple.before.model.Employee;
+import oops.SOLID.singleResponsibilityPrinciple.before.serializer.EmployeeSerializer;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,7 +12,14 @@ import java.util.List;
 
 public class EmployeeRepository {
 
-    public List<Employee> findAll(){
+    private EmployeeSerializer employeeSerializer;
+    private EmployeeConfig config;
+
+    public EmployeeRepository(EmployeeSerializer employeeSerializer) {
+        this.employeeSerializer = employeeSerializer;
+    }
+
+    public List<Employee> findAll() {
 
         // Employees are kept in memory for simplicity
         Employee anna = new FullTimeEmployee("Anna Smith", 2000);
@@ -26,28 +36,15 @@ public class EmployeeRepository {
      * @param employee
      */
     public void save(Employee employee) {
-        try {
-            StringBuilder sb = new StringBuilder();
-            sb.append("### EMPLOYEE RECORD ####");
-            sb.append(System.lineSeparator());
-            sb.append("NAME: ");
-            sb.append(employee.getFullName());
-            sb.append(System.lineSeparator());
-            sb.append("POSITION: ");
-            sb.append(employee.getClass().getTypeName());
-            sb.append(System.lineSeparator());
-            sb.append("EMAIL: ");
-            sb.append(employee.getEmail());
-            sb.append(System.lineSeparator());
-            sb.append("MONTHLY WAGE: ");
-            sb.append(employee.getMonthlyIncome());
-            sb.append(System.lineSeparator());
 
-            Path path = Paths.get(employee.getFullName()
-                    .replace(" ","_") + ".rec");
-            Files.write(path, sb.toString().getBytes());
+        String serializedEmployee = employeeSerializer.toString(employee);
+
+        try {
+            Path path = Paths.get(config.getRecordLocation(employee));
+            Files.write(path, serializedEmployee.getBytes());
 
             System.out.println("Saved employee " + employee.toString());
+
         } catch (IOException e){
             System.out.println("ERROR: Could not save employee. " + e);
         }
