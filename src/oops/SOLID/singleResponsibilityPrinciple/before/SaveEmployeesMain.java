@@ -14,7 +14,12 @@ public class SaveEmployeesMain {
 
         // Save all
 		for (Employee e : employees) {
-			repository.save(e);
+			try {
+				repository.save(e);
+			} catch (Exception exc) {
+				// TODO Auto-generated catch block
+				exc.printStackTrace();
+			}
 		}
     }
 }
