@@ -10,7 +10,7 @@ public class SaveEmployeesMain {
 
     public static void main(String[] args) {
         // Grab employees
-        EmployeeRepository employeeRepository = new EmployeeRepository(new EmployeeSerializer());
+        EmployeeRepository employeeRepository = new EmployeeRepository();
         List<Employee> employees = employeeRepository.findAll();
 
         // Save all

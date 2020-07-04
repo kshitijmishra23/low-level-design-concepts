@@ -18,8 +18,9 @@ public class EmployeeRepository {
     private EmployeeSerializer employeeSerializer;
     private EmployeeConfig config;
 
-    public EmployeeRepository(EmployeeSerializer employeeSerializer) {
-        this.employeeSerializer = employeeSerializer;
+    public EmployeeRepository() {
+        this.config = new EmployeeConfig();
+        this.employeeSerializer = new EmployeeSerializer();
     }
 
     public List<Employee> findAll() {
