@@ -19,6 +19,7 @@ public class EmployeeRepository {
     private EmployeeConfig config;
 
     public EmployeeRepository() {
+        // Initializing these here for simplicity, but ideally they should be passed as dependencies
         this.config = new EmployeeConfig();
         this.employeeSerializer = new EmployeeSerializer();
     }
