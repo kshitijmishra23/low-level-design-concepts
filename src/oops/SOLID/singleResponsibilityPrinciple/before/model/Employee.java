@@ -1,4 +1,4 @@
-package oops.SOLID.singleResponsibilityPrinciple.before;
+package oops.SOLID.singleResponsibilityPrinciple.before.model;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 Models an employee form a business perspective
  */
 public abstract class Employee {
+
     private String firstName;
     private String lastName;
     private int monthlyIncome;
