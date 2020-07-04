@@ -25,7 +25,7 @@ public class EmployeeRepository {
      * Persists the employee
      * @param employee object to be persisted
      */
-    public void save(Employee employee){
+    public void save(Employee employee) throws Exception {
         try {
             String serializedEmployee = EmployeeFileSerializer.serialize(employee);
 
@@ -36,6 +36,7 @@ public class EmployeeRepository {
             System.out.println("Saved employee " + employee.toString());
         } catch (IOException e){
             System.out.println("ERROR: Could not save employee. " + e);
+            throw e;
         }
     }
 
