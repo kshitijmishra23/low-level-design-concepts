@@ -20,16 +20,25 @@ public class CalculateTaxesClient {
         // Calculate taxes
         Locale locale = new Locale("en", "US");
         NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
-        TaxCalculator taxCalculator = new TaxCalculator();
+
 
         double totalTaxes = 0;
         for (Employee employee: employees){
 
             // compute individual tax
-            double tax = taxCalculator.calculate(employee);
-            String formattedTax = currencyFormatter.format(tax);
-            // add to company total taxes
-            totalTaxes += taxCalculator.calculate(employee);
+            try {
+                TaxCalculator taxCalculator = TaxCalculatorFactory.getTaxCalculator(employee);
+                double tax = taxCalculator.calculate(employee);
+                String formattedTax = currencyFormatter.format(tax);
+                // add to company total taxes
+                totalTaxes += taxCalculator.calculate(employee);
+                System.out.println(tax);
+            }
+            catch (Exception e){
+                System.out.println("UNABLE TO FETCH TAXES FOR EMPLOYEE " + employee);
+            }
+
+
         }
     }
 }
