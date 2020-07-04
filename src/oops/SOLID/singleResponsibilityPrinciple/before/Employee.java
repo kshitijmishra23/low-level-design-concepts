@@ -1,5 +1,5 @@
 package oops.SOLID.singleResponsibilityPrinciple.before;
-    
+
 /*
 Models an employee form a business perspective
  */

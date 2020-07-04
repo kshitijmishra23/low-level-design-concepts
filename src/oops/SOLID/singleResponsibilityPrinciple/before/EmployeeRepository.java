@@ -27,25 +27,11 @@ public class EmployeeRepository {
      */
     public void save(Employee employee){
         try {
-            StringBuilder sb = new StringBuilder();
-            sb.append("### EMPLOYEE RECORD ####");
-            sb.append(System.lineSeparator());
-            sb.append("NAME: ");
-            sb.append(employee.getFirstName() + " " + employee.getLastName());
-            sb.append(System.lineSeparator());
-            sb.append("POSITION: ");
-            sb.append(employee.getClass().getTypeName());
-            sb.append(System.lineSeparator());
-            sb.append("EMAIL: ");
-            sb.append(employee.getEmail());
-            sb.append(System.lineSeparator());
-            sb.append("MONTHLY WAGE: ");
-            sb.append(employee.getMonthlyIncome());
-            sb.append(System.lineSeparator());
+            String serializedEmployee = EmployeeFileSerializer.serialize(employee);
 
             Path path = Paths.get(employee.getFullName()
                     .replace(" ","_") + ".rec");
-            Files.write(path, sb.toString().getBytes());
+            Files.write(path, serializedEmployee.getBytes());
 
             System.out.println("Saved employee " + employee.toString());
         } catch (IOException e){
