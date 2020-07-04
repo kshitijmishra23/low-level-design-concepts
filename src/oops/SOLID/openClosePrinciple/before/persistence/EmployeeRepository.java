@@ -5,6 +5,7 @@ import java.util.List;
 
 import oops.SOLID.openClosePrinciple.before.employees.Employee;
 import oops.SOLID.openClosePrinciple.before.employees.FullTimeEmployee;
+import oops.SOLID.openClosePrinciple.before.employees.Intern;
 import oops.SOLID.openClosePrinciple.before.employees.PartTimeEmployee;
 
 public class EmployeeRepository {
@@ -18,6 +19,9 @@ public class EmployeeRepository {
         Employee steve = new PartTimeEmployee("Steve Jones", 800);
         Employee magda = new PartTimeEmployee("Magda Iovan", 920);
 
-        return Arrays.asList(anna, billy, steve, magda);
+        Employee josh = new Intern("Josh Pitzer", 400, 40);
+        Employee nathan = new Intern("Nathan Brown", 450, 40);
+
+        return Arrays.asList(anna, billy, steve, magda, josh, nathan);
     }
 }
