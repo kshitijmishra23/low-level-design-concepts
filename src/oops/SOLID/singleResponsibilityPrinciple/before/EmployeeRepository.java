@@ -21,7 +21,7 @@ public class EmployeeRepository {
         return Arrays.asList(anna, billy, steve, magda);
     }
     
-	public static void save(Employee employee) {
+	public void save(Employee employee) {
 		try {
 			StringBuilder sb = new StringBuilder();
 			sb.append("### EMPLOYEE RECORD ####");
