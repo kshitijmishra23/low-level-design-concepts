@@ -7,18 +7,22 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class SaveEmployeesMain {
-    public static void main(String[] args) {
+	
+	private static String className = SaveEmployeesMain.class.getName();
+	
+	public static void main(String[] args) {
         // Grab employees
         EmployeeRepository repository = new EmployeeRepository();
         List<Employee> employees = repository.findAll();
 
+        Logger logger = new Logger();
         // Save all
 		for (Employee e : employees) {
 			try {
 				repository.save(e);
+				logger.logInfo(className, e.toString());
 			} catch (Exception exc) {
-				// TODO Auto-generated catch block
-				exc.printStackTrace();
+				logger.logError(className, exc);
 			}
 		}
     }

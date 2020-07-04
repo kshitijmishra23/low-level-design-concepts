@@ -25,7 +25,6 @@ public class EmployeeRepository {
 		EmployeeSerializer serializer = new EmployeeSerializer();
 		Path path = Paths.get(employee.getFullName().replace(" ", "_") + ".rec");
 		Files.write(path, serializer.serializeEmp(employee).getBytes());
-		System.out.println("Saved employee " + employee.toString());
 	}
     
 }
