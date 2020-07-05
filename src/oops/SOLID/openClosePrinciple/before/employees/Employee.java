@@ -33,6 +33,10 @@ public abstract class Employee {
     public int getMonthlyIncome() {
         return monthlyIncome;
     }
+    
+    public int getAnnualIncome() {
+        return monthlyIncome * 12;
+    }
 
     public void setMonthlyIncome(int monthlyIncome) {
         if(monthlyIncome < 0){

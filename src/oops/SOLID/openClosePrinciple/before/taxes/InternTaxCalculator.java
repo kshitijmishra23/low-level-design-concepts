@@ -9,8 +9,8 @@ public class InternTaxCalculator implements TaxCalculator {
 
 	@Override
 	public double calculate(Employee employee) {
-		if (employee.getMonthlyIncome() > MIN_SALARY_FOR_TAX) {
-			return (employee.getMonthlyIncome() * INCOME_TAX_PERCENTAGE) / 100;
+		if (employee.getAnnualIncome() > MIN_SALARY_FOR_TAX) {
+			return (employee.getAnnualIncome() * INCOME_TAX_PERCENTAGE) / 100;
 		}
 		return 0;
 	}
