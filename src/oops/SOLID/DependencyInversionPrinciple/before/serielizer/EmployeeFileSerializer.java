@@ -2,25 +2,22 @@ package oops.SOLID.DependencyInversionPrinciple.before.serielizer;
 
 import oops.SOLID.DependencyInversionPrinciple.before.employees.Employee;
 
-public class EmployeeFileSerializer {
-    public String serialize(Employee employee) {
-        StringBuilder sb = new StringBuilder();
+public class EmployeeFileSerializer implements EmployeeSerializer {
 
-        sb.append("### EMPLOYEE RECORD ####");
-        sb.append(System.lineSeparator());
-        sb.append("NAME: ");
-        sb.append(employee.getFullName());
-        sb.append(System.lineSeparator());
-        sb.append("POSITION: ");
-        sb.append(employee.getClass().getTypeName());
-        sb.append(System.lineSeparator());
-        sb.append("EMAIL: ");
-        sb.append(employee.getEmail());
-        sb.append(System.lineSeparator());
-        sb.append("MONTHLY WAGE: ");
-        sb.append(employee.getMonthlyIncome());
-        sb.append(System.lineSeparator());
-
-        return sb.toString();
+    public String serialize(final Employee employee) {
+        return "### EMPLOYEE RECORD ####" +
+            System.lineSeparator() +
+            "NAME: " +
+            employee.getFullName() +
+            System.lineSeparator() +
+            "POSITION: " +
+            employee.getClass().getTypeName() +
+            System.lineSeparator() +
+            "EMAIL: " +
+            employee.getEmail() +
+            System.lineSeparator() +
+            "MONTHLY WAGE: " +
+            employee.getMonthlyIncome() +
+            System.lineSeparator();
     }
 }

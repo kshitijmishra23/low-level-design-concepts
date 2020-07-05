@@ -1,20 +1,16 @@
 package oops.SOLID.DependencyInversionPrinciple.before.repositories;
 
 
-
+import oops.SOLID.DependencyInversionPrinciple.before.employees.Employee;
+import oops.SOLID.DependencyInversionPrinciple.before.employees.FullTimeEmployee;
+import oops.SOLID.DependencyInversionPrinciple.before.employees.PartTimeEmployee;
+import oops.SOLID.DependencyInversionPrinciple.before.serielizer.EmployeeSerializer;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.List;
-
-import oops.SOLID.DependencyInversionPrinciple.before.employees.Employee;
-import oops.SOLID.DependencyInversionPrinciple.before.employees.FullTimeEmployee;
-import oops.SOLID.DependencyInversionPrinciple.before.employees.Intern;
-import oops.SOLID.DependencyInversionPrinciple.before.employees.PartTimeEmployee;
-import oops.SOLID.DependencyInversionPrinciple.before.serielizer.EmployeeFileSerializer;
 
 import static java.util.Arrays.asList;
 
@@ -26,9 +22,9 @@ we are storing employees in the file system.
 
 public class EmployeeFileRepository implements EmployeeRepository {
 
-    private final EmployeeFileSerializer serializer;
+    private final EmployeeSerializer serializer;
 
-    public EmployeeFileRepository(EmployeeFileSerializer serializer) {
+    public EmployeeFileRepository(final EmployeeSerializer serializer) {
         this.serializer = serializer;
     }
 
