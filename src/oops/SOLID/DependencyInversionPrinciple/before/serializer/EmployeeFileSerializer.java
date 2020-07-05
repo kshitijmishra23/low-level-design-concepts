@@ -1,8 +1,10 @@
-package oops.SOLID.DependencyInversionPrinciple.before.serielizer;
+package oops.SOLID.DependencyInversionPrinciple.before.serializer;
 
 import oops.SOLID.DependencyInversionPrinciple.before.employees.Employee;
 
-public class EmployeeFileSerializer {
+public class EmployeeFileSerializer implements Serializer<Employee>{
+	
+	@Override
     public String serialize(Employee employee) {
         StringBuilder sb = new StringBuilder();
 
