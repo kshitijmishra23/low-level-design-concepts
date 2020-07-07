@@ -7,8 +7,6 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.imageio.IIOException;
-
 import oops.SOLID.singleResponsibilityPrinciple.after.employees.Employee;
 import oops.SOLID.singleResponsibilityPrinciple.after.employees.FullTimeEmployee;
 import oops.SOLID.singleResponsibilityPrinciple.after.employees.PartTimeEmployee;
