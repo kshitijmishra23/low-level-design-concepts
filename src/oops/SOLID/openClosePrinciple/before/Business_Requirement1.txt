@@ -1,0 +1,7 @@
+#Business Requirement Document
+#Version 1.0
+
+Taxes for employees are calculated like this:
+
+- 20% income tax
+- 3% professional tax
