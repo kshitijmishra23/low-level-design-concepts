@@ -1,5 +1,7 @@
 package oops.designPatterns.builder;
 
+import oops.designPatterns.builder.stringBuilder.StringBuilder;
+
 public class Client {
 
     public static void main(String[] args) {
@@ -24,6 +26,9 @@ public class Client {
 
         System.out.println(sub3.getBread());
         System.out.println(sub3.getCondiments());
+
+        StringBuilder sb = new StringBuilder.Builder().append("String 1").build();
+        System.out.println(String.format("Data: %1$s, Reference: %2$s", sb.getString(), sb.toString()));
     }
 
 }
