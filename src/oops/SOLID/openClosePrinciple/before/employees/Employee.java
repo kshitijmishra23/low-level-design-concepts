@@ -1,5 +1,7 @@
 package oops.SOLID.openClosePrinciple.before.employees;
 
+import oops.SOLID.openClosePrinciple.before.taxes.TaxCalculator;
+
 /*
 Models an employee form a business perspective
  */
@@ -9,7 +11,7 @@ public abstract class Employee {
     private int monthlyIncome;
     private int nbHoursPerWeek;
 
-    public Employee(String fullName, int monthlyIncome){
+    public Employee(String fullName, int monthlyIncome) {
         setMonthlyIncome(monthlyIncome);
 
         String[] names = fullName.split(" ");
@@ -57,5 +59,7 @@ public abstract class Employee {
     public String getFullName(){
         return this.firstName + " " + this.lastName;
     }
+
+    public abstract EmployeeType getEmployeeType();
 }
 
