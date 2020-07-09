@@ -12,4 +12,9 @@ public class Shop extends Website {
     pages.add(new ItemPage());
     pages.add(new SearchPage());
   }
+
+  @Override
+  public String toString() {
+    return "Shop{" + "pages=" + pages + '}';
+  }
 }
