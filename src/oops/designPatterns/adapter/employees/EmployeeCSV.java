@@ -57,5 +57,4 @@ public class EmployeeCSV {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-
 }
