@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.Locale;
 
 import oops.SOLID.openClosePrinciple.before.employees.Employee;
+import oops.SOLID.openClosePrinciple.before.persistence.EmployeeFactory;
 import oops.SOLID.openClosePrinciple.before.persistence.EmployeeRepository;
-import oops.SOLID.openClosePrinciple.before.taxes.TaxCalculator;
+import oops.SOLID.openClosePrinciple.before.taxes.Taxable;;
 
 
 public class CalculateTaxesClient {
@@ -31,14 +32,19 @@ public class CalculateTaxesClient {
     
     public static double totalTax(List<Employee> employees, NumberFormat currencyFormatter) {
     	double totalTaxes = 0;
-    	TaxCalculator taxCalculator = new TaxCalculator();
+
         for (Employee employee: employees){
         	
             // compute individual tax
-            double tax = taxCalculator.calculate(employee);
-            String formattedTax = currencyFormatter.format(tax);
-            // add to company total taxes
-            totalTaxes += taxCalculator.calculate(employee);
+        	Taxable taxableEmployee = EmployeeFactory.getEmployeeType(employee);
+        	if (taxableEmployee != null) {
+        		
+        		double tax = taxableEmployee.calculateTax(employee);
+                String formattedTax = currencyFormatter.format(tax);
+                // add to company total taxes
+                totalTaxes += Double.parseDouble(formattedTax);
+        	}
+            
         }
         return totalTaxes;
     }
