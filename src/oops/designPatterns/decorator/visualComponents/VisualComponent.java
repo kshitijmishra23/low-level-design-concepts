@@ -2,7 +2,7 @@ package oops.designPatterns.decorator.visualComponents;
 
 public abstract class VisualComponent {
 
-	protected Border border = new Border();
+	protected Border border;
 
 	public Border getBorder() {
 		return border;
