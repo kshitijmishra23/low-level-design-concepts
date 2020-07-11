@@ -3,7 +3,7 @@ package oops.designPatterns.adapter.employees;
 
 import java.util.StringTokenizer;
 
-public class EmployeeCSV {
+public class EmployeeCSV  {
 
 	private int id;
 	private String firstname;
@@ -34,9 +34,6 @@ public class EmployeeCSV {
 		return firstname;
 	}
 
-	public int getId() {
-		return id;
-	}
 
 	public String getLastname() {
 		return lastname;
@@ -53,6 +50,12 @@ public class EmployeeCSV {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public int getId(){
+		return id;
+	}
+
+
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
