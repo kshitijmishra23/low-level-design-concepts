@@ -1,7 +1,7 @@
 package oops.designPatterns.adapter.employees;
 
 
-public class EmployeeDB implements Employee {
+public class EmployeeDB  {
 
 	private String id;
 	private String firstName;
