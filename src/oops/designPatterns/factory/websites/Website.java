@@ -16,6 +16,7 @@ public abstract class Website {
 	}
 
 	public Website() {
+		System.out.println("yoloyolyoylo!!");
 		this.createWebsite();
 	}
 	
