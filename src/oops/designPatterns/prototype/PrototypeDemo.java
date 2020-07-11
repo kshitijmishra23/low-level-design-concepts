@@ -5,7 +5,7 @@ import oops.designPatterns.prototype.items.Movie;
 public class PrototypeDemo {
 
 	public static void main(String[] args) {
-		Registry registry = new Registry();
+		Registry registry = Registry.getInstance();
 		Movie movie = (Movie) registry.createItem("Movie");
 		movie.setTitle("The Prestige");
 		
