@@ -1,0 +1,7 @@
+# Build directories
+out/
+bin/
+
+# IntelliJ Idea related files
+.idea/
+*.iml
