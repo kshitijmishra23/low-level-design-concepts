@@ -15,6 +15,7 @@ import oops.SOLID.DependencyInversionPrinciple.before.employees.FullTimeEmployee
 import oops.SOLID.DependencyInversionPrinciple.before.employees.Intern;
 import oops.SOLID.DependencyInversionPrinciple.before.employees.PartTimeEmployee;
 import oops.SOLID.DependencyInversionPrinciple.before.serielizer.EmployeeFileSerializer;
+import oops.SOLID.DependencyInversionPrinciple.before.serielizer.EmployeeSerializer;
 
 /*
 Helper method to perform CRUD operations on employees. In a production
@@ -22,7 +23,7 @@ application we could use the database for persistence. In this demo,
 we are storing employees in the file system.
  */
 
-public class EmployeeFileRepository {
+public class EmployeeFileRepository implements EmployeeRepository {
     private EmployeeFileSerializer serializer;
 
     public EmployeeFileRepository(EmployeeFileSerializer serializer) {
