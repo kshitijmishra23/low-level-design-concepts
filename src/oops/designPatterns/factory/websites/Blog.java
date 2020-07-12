@@ -14,9 +14,4 @@ public class Blog extends Website {
     pages.add(new CommentPage());
     pages.add(new ContactPage());
   }
-
-  @Override
-  public String toString() {
-    return "Blog{" + "pages=" + pages + '}';
-  }
 }
