@@ -19,13 +19,15 @@ public class EmployeeClient {
 		
 		Employee employeeFromDB = new EmployeeDB("1234", "John", "Wick", "john@wick.com");
 		
-		EmployeeLdap employeeFromLdap = new EmployeeLdap("chewie", "Solo", "Han", "han@solo.com");		
-		
-		EmployeeCSV employeeFromCSV = new EmployeeCSV("567,Sherlock,Holmes,sherlock@holmes.com");
+		Employee employeeFromLdap = new EmployeeAdapterLdap(new EmployeeLdap("chewie", "Solo", "Han", "han@solo.com"));
+
+		Employee employeeFromCSV = new EmployeeAdapterCSV(new EmployeeCSV("567,Sherlock,Holmes,sherlock@holmes.com"));
 		
 		//We have to add the data of all the employees to the employees list
 		//But it only accepts objects of type Employee
-		
+		employees.add(employeeFromDB);
+		employees.add(employeeFromDB);
+		employees.add(employeeFromCSV);
 		
 		return employees;
 		
