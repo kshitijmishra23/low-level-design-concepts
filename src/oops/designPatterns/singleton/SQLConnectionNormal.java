@@ -16,7 +16,11 @@ public class SQLConnectionNormal {
 
 	public static SQLConnectionNormal getInstance(){
 		if(sqlConnectionNormal == null) {
-			sqlConnectionNormal = new SQLConnectionNormal();
+			synchronized (SQLConnectionNormal.class) {
+				if(sqlConnectionNormal==null) {
+					sqlConnectionNormal = new SQLConnectionNormal();
+				}
+			}
 		}
 		return sqlConnectionNormal;
 	}
