@@ -10,26 +10,33 @@ public class SQLConnectionSingleton {
 	
 	private SQLConnectionSingleton() {
 		if(instance != null) {
-			
+
 			throw new RuntimeException("Use getInstance method!");
 		}
 	}
 	
 	public static SQLConnectionSingleton getInstance() {
-		if(instance == null) {
-			instance = new SQLConnectionSingleton();
+		if(instance == null){
+			synchronized (SQLConnectionSingleton.class) {
+				if (instance == null) {
+					instance = new SQLConnectionSingleton();
+				}
+			}
 		}
 		return instance;
 	}
 	
 	public Connection getConnection() {
-		if(connection == null) {
-			String connectionUrl = "jdbc:mysql://localhost:3306/development";
-			try {
-			connection  =  DriverManager.getConnection(connectionUrl,"root","");
-			}
-			catch(SQLException e) {
-				e.printStackTrace();
+		if(connection == null){
+			synchronized (this){
+				if(connection == null) {
+					String connectionUrl = "jdbc:mysql://localhost:3306/development";
+					try {
+						connection = DriverManager.getConnection(connectionUrl, "root", "");
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
 			}
 		}
 		return connection;
