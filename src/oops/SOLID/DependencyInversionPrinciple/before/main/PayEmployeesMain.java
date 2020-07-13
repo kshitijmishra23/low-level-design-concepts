@@ -7,8 +7,7 @@ import oops.SOLID.DependencyInversionPrinciple.before.serielizer.EmployeeFileSer
 public class PayEmployeesMain {
 
     public static void main(String[] args) {
-        EmployeeFileSerializer employeeFileSerializer = new EmployeeFileSerializer();
-        EmployeeFileRepository employeeFileRepository = new EmployeeFileRepository(employeeFileSerializer);
+        EmployeeFileRepository employeeFileRepository = new EmployeeFileRepository(new EmployeeFileSerializer());
         PaymentProcessor paymentProcessor = new PaymentProcessor(employeeFileRepository);
 
         int totalPayments = paymentProcessor.sendPayments();
