@@ -7,7 +7,19 @@ import java.sql.SQLException;
 public class SQLConnectionNormal { 
 	
 	private static Connection connection = null;
-	
+
+	private static SQLConnectionNormal sqlConnectionNormal;
+
+	private SQLConnectionNormal() {
+		//Do the heavy work
+	}
+
+	public static SQLConnectionNormal getInstance(){
+		if(sqlConnectionNormal == null) {
+			sqlConnectionNormal = new SQLConnectionNormal();
+		}
+		return sqlConnectionNormal;
+	}
 	
 	public Connection getConnection() {
 		
