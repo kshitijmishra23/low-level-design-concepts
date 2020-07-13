@@ -19,10 +19,9 @@ public class Registry {
 	public static Registry getRegistryInstance(){
 		if(registry==null) {
 			loadItems();
-			return new Registry();
+			registry = new Registry();
 		}
-				else
-			return registry;
+		return registry;
 	}
 
 
