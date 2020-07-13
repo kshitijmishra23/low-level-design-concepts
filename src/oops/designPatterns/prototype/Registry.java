@@ -10,13 +10,22 @@ import oops.designPatterns.prototype.items.Movie;
 
 //Singleton
 public class Registry {
-
-	private Map<String, Item> items = new HashMap<String, Item>();
+	private static Registry registry=null;
+	private static Map<String, Item> items = new HashMap<String, Item>();
 	
-	public Registry() {
-		loadItems();
+	private Registry(){
 	}
-	
+
+	public static Registry getRegistryInstance(){
+		if(registry==null) {
+			loadItems();
+			return new Registry();
+		}
+				else
+			return registry;
+	}
+
+
 	public Item createItem (String type) {
 		Item item = null;
 		
@@ -30,7 +39,7 @@ public class Registry {
 		return item;
 	}
 	
-	private void loadItems() {
+	private static void loadItems() {
 		Movie artmovie = new Movie();
 		artmovie.setTitle("Basic Movie");
 		artmovie.setPrice(24.99);
