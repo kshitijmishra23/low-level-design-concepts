@@ -12,9 +12,21 @@ import oops.designPatterns.prototype.items.Movie;
 public class Registry {
 
 	private Map<String, Item> items = new HashMap<String, Item>();
+	private static Registry registry;
 	
-	public Registry() {
+	private Registry() {
 		loadItems();
+	}
+
+	public static Registry getInstance(){
+		if(registry == null)
+		{
+			synchronized(Registry.class){
+				if(registry == null)
+					registry = new Registry();
+			}
+		}
+		return registry;
 	}
 	
 	public Item createItem (String type) {
@@ -39,8 +51,8 @@ public class Registry {
 		
 		Movie shortMovies = new Movie();
 		shortMovies.setTitle("Basic Movie");
-		shortMovies.setPrice(24.99);
-		shortMovies.setRuntime("2 hours");
+		shortMovies.setPrice(14.99);
+		shortMovies.setRuntime("1 hours");
 		items.put("ShortMovie", shortMovies);
 		
 		Book book = new Book();
