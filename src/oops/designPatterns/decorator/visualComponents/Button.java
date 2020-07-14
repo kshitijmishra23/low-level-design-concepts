@@ -1,10 +1,10 @@
 package oops.designPatterns.decorator.visualComponents;
 
-public class TextView extends VisualComponent {
+public class Button extends VisualComponent {
 
     String content;
 
-    public TextView(String content) {
+    public Button(String content) {
         this.content = content;
     }
 

@@ -1,6 +1,5 @@
 package oops.designPatterns.decorator.visualComponents;
 
-public abstract class VisualComponent {
-
+public abstract class VisualComponentDecorator extends VisualComponent {
     public abstract void draw();
 }
