@@ -3,7 +3,7 @@ package oops.designPatterns.decorator.visualComponents.decorators;
 import oops.designPatterns.decorator.visualComponents.VisualComponent;
 
 public class BorderDecorator extends VisualComponentDecorator {
-    BorderDecorator(VisualComponent visualComponent) {
+    public BorderDecorator(VisualComponent visualComponent) {
         super(visualComponent);
     }
 
