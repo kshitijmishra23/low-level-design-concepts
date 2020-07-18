@@ -1,5 +1,6 @@
 package oops.SOLID.singleResponsibilityPrinciple.before;
 
+import java.io.IOException;
 import java.util.List;
 
 public class SaveEmployeesMain {
@@ -10,7 +11,12 @@ public class SaveEmployeesMain {
 
         // Save all
         for (Employee e : employees){
-            Employee.save(e);
+            try {
+            	repository.save(e);
+            }
+            catch (IOException ex) {
+            	System.out.println("ERROR: Could not save employee. " + ex);
+            }
         }
     }
 }
