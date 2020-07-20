@@ -1,6 +1,12 @@
 package oops.SOLID.singleResponsibilityPrinciple.before;
 
+import java.io.IOException;
 import java.util.List;
+
+import oops.SOLID.singleResponsibilityPrinciple.before.exception.EmployeePersistException;
+import oops.SOLID.singleResponsibilityPrinciple.before.model.Employee;
+import oops.SOLID.singleResponsibilityPrinciple.before.repository.EmployeeRepository;
+import oops.SOLID.singleResponsibilityPrinciple.before.util.ConsoleLogger;
 
 public class SaveEmployeesMain {
     public static void main(String[] args) {
@@ -10,7 +16,12 @@ public class SaveEmployeesMain {
 
         // Save all
         for (Employee e : employees){
-            Employee.save(e);
+            try {
+				repository.save(e);
+			} catch (IOException e1) {
+				ConsoleLogger.error("Exception caught while saving employee data");
+				throw new EmployeePersistException(e1);
+			}
         }
     }
 }
