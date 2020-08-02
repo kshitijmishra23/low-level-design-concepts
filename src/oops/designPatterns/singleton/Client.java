@@ -13,7 +13,7 @@ public class Client {
 		long timeA = 0;
 		
 		timeB = System.currentTimeMillis();
-		SQLConnectionNormal sqlconnection =  new SQLConnectionNormal();
+		SQLConnectionNormal sqlconnection =  SQLConnectionNormal.getInstance();
 		Connection connection = sqlconnection.getConnection();
 		timeA = System.currentTimeMillis();
 		System.out.println(timeA-timeB);
@@ -33,7 +33,7 @@ public class Client {
 		}
 		
 		timeB = System.currentTimeMillis();
-		SQLConnectionNormal sqlconnection2 = new SQLConnectionNormal();
+		SQLConnectionNormal sqlconnection2 = SQLConnectionNormal.getInstance();
 		Connection connection2 = sqlconnection.getConnection();
 		timeA = System.currentTimeMillis();
 		System.out.println(timeA-timeB);	
