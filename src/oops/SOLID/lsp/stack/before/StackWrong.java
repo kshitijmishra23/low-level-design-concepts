@@ -30,7 +30,7 @@ public class StackWrong {
 	}
 
 	public void pop() {
-		if (top == 0) {
+		if (topPointer == 0) {
 			System.out.println("Stack is empty!");
 			return;
 		}
