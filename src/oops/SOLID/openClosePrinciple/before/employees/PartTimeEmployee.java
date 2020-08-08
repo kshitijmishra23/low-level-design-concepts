@@ -5,4 +5,9 @@ public class PartTimeEmployee extends Employee {
         super(fullName, monthlyIncome);
         this.setNbHoursPerWeek(20);
     }
+
+    public EmployeeType getEmployeeType() {
+        return EmployeeType.PART_TIME;
+    }
+
 }

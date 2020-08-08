@@ -5,4 +5,8 @@ public class Intern extends Employee {
         super(fullName, monthlyIncome);
         setNbHoursPerWeek(nbHours);
     }
+
+    public EmployeeType getEmployeeType() {
+        return EmployeeType.INTERN;
+    }
 }
