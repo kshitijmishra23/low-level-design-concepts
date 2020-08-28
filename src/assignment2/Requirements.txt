@@ -1,0 +1,11 @@
+LLD + Concurreny assignment on implementation of BookMyShow.
+
+High level requirements:
+1) Search for a movie across all cinema halls
+2) View available seats for any show
+3) Book a set of seats
+4) Cancel an existing booking (optional)
+
+Input:
+List of tuples: <movie_id, show_id, seats, request_timestamp>
+
