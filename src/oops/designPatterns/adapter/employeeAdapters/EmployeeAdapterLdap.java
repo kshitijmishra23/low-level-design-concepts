@@ -31,6 +31,7 @@ public class EmployeeAdapterLdap implements Employee {
 		return instance.getMail();
 	}
 
+	@Override
 	public String toString() {
 		return "ID: " + instance.getCn();
 	}

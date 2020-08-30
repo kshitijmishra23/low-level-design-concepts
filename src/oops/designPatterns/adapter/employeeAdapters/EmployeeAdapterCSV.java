@@ -31,4 +31,10 @@ public class EmployeeAdapterCSV implements Employee {
 		return instance.getEmailAddress();
 	}
 
+	@Override
+	public String toString() {
+		return "ID: " + instance.getId() + ", First name: " +  instance.getFirstname() + ", Last name: "
+				+ instance.getLastname() + ", Email: " + instance.getEmailAddress();
+	}
+
 }
