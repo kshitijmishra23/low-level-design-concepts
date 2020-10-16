@@ -20,16 +20,16 @@ public class CalculateTaxesClient {
         // Calculate taxes
         Locale locale = new Locale("en", "US");
         NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
-        TaxCalculator taxCalculator = new TaxCalculator();
+   
 
         double totalTaxes = 0;
         for (Employee employee: employees){
 
             // compute individual tax
-            double tax = taxCalculator.calculate(employee);
+            double tax = TaxCalculator.calculate(employee);
             String formattedTax = currencyFormatter.format(tax);
             // add to company total taxes
-            totalTaxes += taxCalculator.calculate(employee);
+            totalTaxes += TaxCalculator.calculate(employee);
         }
     }
 }

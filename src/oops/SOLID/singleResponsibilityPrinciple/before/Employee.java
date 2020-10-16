@@ -63,8 +63,9 @@ public abstract class Employee {
         return this.firstName + " " + this.lastName;
     }
 
-    public static void save(Employee employee){
+    public  void save(){
         try {
+        	Employee employee =this;
             StringBuilder sb = new StringBuilder();
             sb.append("### EMPLOYEE RECORD ####");
             sb.append(System.lineSeparator());
