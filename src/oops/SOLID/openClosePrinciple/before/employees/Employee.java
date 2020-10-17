@@ -1,11 +1,9 @@
 package oops.SOLID.openClosePrinciple.before.employees;
 
-import oops.SOLID.openClosePrinciple.before.taxes.TaxCalculator;
-
 /*
 Models an employee form a business perspective
  */
-public abstract class Employee extends TaxCalculator{
+public abstract class Employee{
     private String firstName;
     private String lastName;
     private int monthlyIncome;
