@@ -1,7 +1,13 @@
 package oops.SOLID.singleResponsibilityPrinciple.before;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import oops.SOLID.singleResponsibilityPrinciple.before.serializer.EmployeeFileSerializer;
+import oops.SOLID.singleResponsibilityPrinciple.before.logger.Logger;
+
 
 public class EmployeeRepository {
 
@@ -15,5 +21,12 @@ public class EmployeeRepository {
         Employee magda = new PartTimeEmployee("Magda Iovan", 920);
 
         return Arrays.asList(anna, billy, steve, magda);
+    }
+    
+    public static void save(Employee employee) throws Exception {
+    	String employeeFileSerialized = EmployeeFileSerializer.serializeEmployee(employee);
+        Path path = Paths.get(employee.getFullName().replace(" ","_") + ".rec");
+        Files.write(path, employeeFileSerialized.getBytes());
+        Logger.log("Saved employee " + employee.toString());
     }
 }
