@@ -4,7 +4,6 @@ import oops.SOLID.openClosePrinciple.before.employees.Employee;
 import oops.SOLID.openClosePrinciple.before.employees.FullTimeEmployee;
 import oops.SOLID.openClosePrinciple.before.employees.Intern;
 import oops.SOLID.openClosePrinciple.before.employees.PartTimeEmployee;
-import oops.SOLID.openClosePrinciple.before.exception.InvalidEmployeeException;
 import oops.SOLID.openClosePrinciple.before.exception.TaxCalculatorNotImplementedException;
 import oops.SOLID.openClosePrinciple.before.taxes.FullTimeEmployeeTaxCalculator;
 import oops.SOLID.openClosePrinciple.before.taxes.InternTaxCalculator;
@@ -12,10 +11,7 @@ import oops.SOLID.openClosePrinciple.before.taxes.PartTimeEmployeeTaxCalculator;
 import oops.SOLID.openClosePrinciple.before.taxes.TaxCalculator;
 
 public class TaxCalculatorFactory {
-    public static TaxCalculator getTaxCalculator(Employee employee) throws InvalidEmployeeException, TaxCalculatorNotImplementedException {
-        if(employee == null)
-            throw new InvalidEmployeeException("Employee instance is not valid");
-
+    public static TaxCalculator getTaxCalculator(Employee employee) throws TaxCalculatorNotImplementedException {
         if(employee instanceof FullTimeEmployee)
             return FullTimeEmployeeTaxCalculator.getInstance();
         else if(employee instanceof PartTimeEmployee)

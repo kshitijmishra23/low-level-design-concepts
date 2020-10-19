@@ -11,33 +11,56 @@ import oops.SOLID.openClosePrinciple.before.taxes.TaxCalculator;
 
 
 public class CalculateTaxesClient {
-    public static void main(String[] args) {
-       
-        EmployeeRepository repository = new EmployeeRepository();
+    private static Locale m_locale;
+    private static NumberFormat m_currencyFormat;
 
+    private static void init() {
+        setLocale();
+        setCurrencyFormat();
+    }
+
+    private static void setLocale() {
+        m_locale = new Locale("en", "US");
+    }
+
+    private static void setCurrencyFormat() {
+        m_currencyFormat = NumberFormat.getCurrencyInstance(m_locale);
+    }
+
+    private static List<Employee> getEmployeesFromRepository() {
+        EmployeeRepository repository = new EmployeeRepository();
         // Grab employees
         List<Employee> employees = repository.findAll();
+        return employees;
+    }
 
+    private static double getTotalTax(List<Employee> employees) {
         // Calculate taxes
-        Locale locale = new Locale("en", "US");
-        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
-   
-
-        double totalTaxes = 0;
+        double totalTax = 0;
         for (Employee employee: employees){
             try {
                 // compute individual tax
                 TaxCalculator taxCalculator = TaxCalculatorFactory.getTaxCalculator(employee);
                 double tax = taxCalculator.calculate(employee);
-                String formattedTax = currencyFormatter.format(tax);
                 // add to company total taxes
-                totalTaxes += tax;
+                totalTax += tax;
             }
             catch (Exception exception) {
                 System.out.println(exception.toString());
             }
         }
+        return totalTax;
+    }
 
-        System.out.println("Total tax paid by employees of the company is: " + currencyFormatter.format(totalTaxes));
+    private static void printFormattedTax(double totalTax) {
+        System.out.println("Total tax paid by employees of the company is: " + m_currencyFormat.format(totalTax));
+    }
+
+    public static void main(String[] args) {
+        init();
+
+        List<Employee> employees = getEmployeesFromRepository();
+        double totalTax = getTotalTax(employees);
+        printFormattedTax(totalTax);
     }
 }
