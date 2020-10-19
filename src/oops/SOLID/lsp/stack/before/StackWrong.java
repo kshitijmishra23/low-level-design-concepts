@@ -14,19 +14,25 @@ import java.util.ArrayList;
  * so objects of ArrayList are not fully replaceable by the objects of stack.   
  * 
  */
-public class StackWrong extends ArrayList<Integer>{
+public class StackWrong{
 	private int topPointer = 0;
-	
+	/* 	Instead of having is-a Relationship
+	 *	we can have has-a Relationship with ArrayList
+ 	 *	This will not enforce methods like clear(), get(i) etc on stack
+ 	 *  which stack is not supposed to have and so it will not violate LSP
+	 */
+	private ArrayList<Integer> stackList = new ArrayList<>();
+
 	public void push(Integer a) {
-		add(topPointer, a);
+		stackList.add(topPointer, a);
 		topPointer++;
 	}	
 	public void pop() {
-		remove(topPointer-1);
+		stackList.remove(topPointer-1);
 		topPointer--;
 	}
 	public Integer top() {
-		return get(topPointer-1);
+		return stackList.get(topPointer-1);
 	}
 	
 	public static void main(String[] args) {
@@ -36,7 +42,7 @@ public class StackWrong extends ArrayList<Integer>{
 		System.out.println(st.top());
 		st.pop();
 		System.out.println(st.top());
-		st.clear();
+//		st.clear();		----->  This will give now compilation error
 		System.out.println(st.top());
 	}
 }
