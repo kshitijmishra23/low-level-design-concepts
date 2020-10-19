@@ -10,7 +10,6 @@ public class SaveEmployeesMain {
         EmployeeDao employeeDao = new EmployeeDaoImpl(employeeSerializer);
         List<Employee> employees = repository.findAll();
 
-
         // Save all
         for (Employee e : employees){
             employeeDao.save(e);
