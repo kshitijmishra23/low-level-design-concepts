@@ -65,7 +65,23 @@ public abstract class Employee {
 
     public  void save(){
         try {
-        	Employee employee =this;
+            saveUtility.employeeFileSaveUtil(this);
+            System.out.println("Saved employee " + employee.toString());
+        } catch (IOException e){
+            System.out.println("ERROR: Could not save employee. " + e);
+        }
+    }
+    class saveUtility{
+        static public employeeFileSaveUtil(Employee e){
+            String empString;            
+            empString = SerailizeUtility.serailizeEmployee(e);
+            Path path = Paths.get(e.getFullName().replace(" ","_") + ".rec");
+            FileWriteUtility.fileWrite(path, empString);
+        }
+    }
+    class SerailizeUtility{
+        static public String serailizeEmployee(Employee e){
+            Employee employee =e;
             StringBuilder sb = new StringBuilder();
             sb.append("### EMPLOYEE RECORD ####");
             sb.append(System.lineSeparator());
@@ -81,14 +97,12 @@ public abstract class Employee {
             sb.append("MONTHLY WAGE: ");
             sb.append(employee.monthlyIncome);
             sb.append(System.lineSeparator());
-
-            Path path = Paths.get(employee.getFullName()
-                    .replace(" ","_") + ".rec");
-            Files.write(path, sb.toString().getBytes());
-
-            System.out.println("Saved employee " + employee.toString());
-        } catch (IOException e){
-            System.out.println("ERROR: Could not save employee. " + e);
+            return sb.toString();
+        }
+    }
+    class FileWriteUtility{
+        static public fileWrite(Path path, String str){            
+            Files.write(path, str.getBytes());            
         }
     }
 }
