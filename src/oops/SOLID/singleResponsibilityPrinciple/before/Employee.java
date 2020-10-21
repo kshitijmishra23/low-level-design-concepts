@@ -62,47 +62,4 @@ public abstract class Employee {
     public String getFullName(){
         return this.firstName + " " + this.lastName;
     }
-
-    public  void save(){
-        try {
-            saveUtility.employeeFileSaveUtil(this);
-            System.out.println("Saved employee " + employee.toString());
-        } catch (IOException e){
-            System.out.println("ERROR: Could not save employee. " + e);
-        }
-    }
-    class saveUtility{
-        static public employeeFileSaveUtil(Employee e){
-            String empString;            
-            empString = SerailizeUtility.serailizeEmployee(e);
-            Path path = Paths.get(e.getFullName().replace(" ","_") + ".rec");
-            FileWriteUtility.fileWrite(path, empString);
-        }
-    }
-    class SerailizeUtility{
-        static public String serailizeEmployee(Employee e){
-            Employee employee =e;
-            StringBuilder sb = new StringBuilder();
-            sb.append("### EMPLOYEE RECORD ####");
-            sb.append(System.lineSeparator());
-            sb.append("NAME: ");
-            sb.append(employee.firstName + " " + employee.lastName);
-            sb.append(System.lineSeparator());
-            sb.append("POSITION: ");
-            sb.append(employee.getClass().getTypeName());
-            sb.append(System.lineSeparator());
-            sb.append("EMAIL: ");
-            sb.append(employee.getEmail());
-            sb.append(System.lineSeparator());
-            sb.append("MONTHLY WAGE: ");
-            sb.append(employee.monthlyIncome);
-            sb.append(System.lineSeparator());
-            return sb.toString();
-        }
-    }
-    class FileWriteUtility{
-        static public fileWrite(Path path, String str){            
-            Files.write(path, str.getBytes());            
-        }
-    }
 }
