@@ -10,7 +10,13 @@ public class SaveEmployeesMain {
 
         // Save all
         for (Employee e : employees){
-            e.save();
+            // e.save(); 
+            try {
+                SaveUtility.employeeFileSaveUtil(e);
+                System.out.println("Saved employee " + e.toString());
+            } catch (IOException ex){
+                System.out.println("ERROR: Could not save employee. " + ex);
+            }
         }
     }
 }
