@@ -1,6 +1,6 @@
 
 class TaxCalcUtilFactory{
-    public TaxCalcInterface getTaxCalculator(Employee e){
+    public static TaxCalcInterface getTaxCalculator(Employee e){
          if (e.getNbHoursPerWeek() == 40){
              return new TaxCalcUtilFTE();
          }
