@@ -17,19 +17,27 @@ public class SQLConnectionSingleton {
 	
 	public static SQLConnectionSingleton getInstance() {
 		if(instance == null) {
-			instance = new SQLConnectionSingleton();
+			synchronized(SQLConnectionSingleton.class){
+				if(instance == null){
+					instance = new SQLConnectionSingleton();
+				}
+			}
 		}
 		return instance;
 	}
 	
 	public Connection getConnection() {
 		if(connection == null) {
-			String connectionUrl = "jdbc:mysql://localhost:3306/development";
-			try {
-			connection  =  DriverManager.getConnection(connectionUrl,"root","");
-			}
-			catch(SQLException e) {
-				e.printStackTrace();
+			synchronized(SQLConnectionSingleton.class){
+				if(connection == null){
+					String connectionUrl = "jdbc:mysql://localhost:3306/development";
+					try {
+					connection  =  DriverManager.getConnection(connectionUrl,"root","");
+					}
+					catch(SQLException e) {
+						e.printStackTrace();
+					}
+				}
 			}
 		}
 		return connection;
