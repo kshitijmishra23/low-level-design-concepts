@@ -11,6 +11,7 @@ import oops.designPatterns.decorator.visualComponents.decorators.ScrollDecorator
 public class Client {
 
 	public static void main(String[] args) {
+		
 		/*
 		VisualComponent textBox = new TextView("This is the text of my text-box");
 		VisualComponent textBoxWithBorder = new BorderDecorator(textBox);
