@@ -4,8 +4,6 @@ package oops.designPatterns.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import oops.designPatterns.adapter.employeeAdapters.EmployeeAdapterCSV;
-import oops.designPatterns.adapter.employeeAdapters.EmployeeAdapterLdap;
 import oops.designPatterns.adapter.employees.Employee;
 import oops.designPatterns.adapter.employees.EmployeeCSV;
 import oops.designPatterns.adapter.employees.EmployeeDB;
