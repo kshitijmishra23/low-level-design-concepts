@@ -1,9 +1,10 @@
 package oops.SOLID.singleResponsibilityPrinciple.before;
 
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+
 
 /*
 Models an employee form a business perspective
@@ -66,24 +67,8 @@ public abstract class Employee {
     public  void save(){
         try {
         	Employee employee =this;
-            StringBuilder sb = new StringBuilder();
-            sb.append("### EMPLOYEE RECORD ####");
-            sb.append(System.lineSeparator());
-            sb.append("NAME: ");
-            sb.append(employee.firstName + " " + employee.lastName);
-            sb.append(System.lineSeparator());
-            sb.append("POSITION: ");
-            sb.append(employee.getClass().getTypeName());
-            sb.append(System.lineSeparator());
-            sb.append("EMAIL: ");
-            sb.append(employee.getEmail());
-            sb.append(System.lineSeparator());
-            sb.append("MONTHLY WAGE: ");
-            sb.append(employee.monthlyIncome);
-            sb.append(System.lineSeparator());
-
-            Path path = Paths.get(employee.getFullName()
-                    .replace(" ","_") + ".rec");
+            StringBuilder sb = Serializer.serializeInformation(employee);
+            Path path = DBConnection.getPath(employee.getFullName());
             Files.write(path, sb.toString().getBytes());
 
             System.out.println("Saved employee " + employee.toString());
