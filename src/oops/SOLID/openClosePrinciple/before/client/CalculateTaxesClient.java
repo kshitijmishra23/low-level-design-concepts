@@ -7,12 +7,15 @@ import java.util.Locale;
 import oops.SOLID.openClosePrinciple.before.employees.Employee;
 import oops.SOLID.openClosePrinciple.before.persistence.EmployeeRepository;
 import oops.SOLID.openClosePrinciple.before.taxes.TaxCalculator;
+import oops.SOLID.openClosePrinciple.before.taxes.TaxCalculatorFactory;
 
 
 public class CalculateTaxesClient {
     public static void main(String[] args) {
        
         EmployeeRepository repository = new EmployeeRepository();
+
+        TaxCalculatorFactory taxCalculatorFactory = new TaxCalculatorFactory();
 
         // Grab employees
         List<Employee> employees = repository.findAll();
@@ -26,10 +29,11 @@ public class CalculateTaxesClient {
         for (Employee employee: employees){
 
             // compute individual tax
-            double tax = TaxCalculator.calculate(employee);
+            TaxCalculator taxCalculator = taxCalculatorFactory.createTaxCalculator(employee);
+            double tax = taxCalculator.calculate(employee);
             String formattedTax = currencyFormatter.format(tax);
             // add to company total taxes
-            totalTaxes += TaxCalculator.calculate(employee);
+            totalTaxes += taxCalculator.calculate(employee);
         }
     }
 }
