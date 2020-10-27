@@ -10,13 +10,23 @@ import oops.designPatterns.prototype.items.Movie;
 
 //Singleton
 public class Registry {
-
+	private static Registry registry = null;
 	private Map<String, Item> items = new HashMap<String, Item>();
 	
-	public Registry() {
+	private Registry() {
+		if(registry!=null){
+			throw new RuntimeException("Use getInstance method");
+		}
 		loadItems();
 	}
-	
+
+	public static Registry getInstance(){
+		if(registry==null){
+			registry = new Registry();
+		}
+		return registry;
+	}
+
 	public Item createItem (String type) {
 		Item item = null;
 		
