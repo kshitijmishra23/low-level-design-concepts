@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Client {
+public class Client extends Thread{
 	
 	public void createConnectionUsingNormalConnector() {
 		System.out.println("Normal Connection");
@@ -20,7 +20,7 @@ public class Client {
 		
 		try {
 		 Statement statement = connection.createStatement();
-	        String selectSql ="select * from users where id = 169997";
+	        String selectSql ="select * from users where id = 2";
 	        ResultSet resultSet = statement.executeQuery(selectSql);
 	        while(resultSet.next()) {
 	        System.out.println("id: "+ resultSet.getInt("id"));
@@ -41,7 +41,8 @@ public class Client {
 		System.out.println("------------------------------\n");
 	}
 	
-	public void createConnectionUsingSingletonConnector() {
+	//making the below method as synchronized
+	public synchronized void createConnectionUsingSingletonConnector() {
 		System.out.println("Singleton Connection");
 		long timeB = 0;
 		long timeA = 0;
@@ -62,7 +63,8 @@ public class Client {
 	        System.out.println("email: "+ resultSet.getString("email"));
 	        System.out.println("university: "+ resultSet.getString("university"));
 	        }
-		}catch(SQLException e){
+	        Thread.sleep(400);
+		}catch(SQLException | InterruptedException e){
 			e.printStackTrace();
 		}
 		
@@ -83,17 +85,41 @@ public class Client {
 		c1.createConnectionUsingNormalConnector();
 		c1.createConnectionUsingNormalConnector();
 
-		/*
-		Client c2 = new Client();
-		c2.createConnectionUsingSingletonConnector();
-		c2.createConnectionUsingSingletonConnector();
-		c2.createConnectionUsingSingletonConnector();
-		c2.createConnectionUsingSingletonConnector();
-		c2.createConnectionUsingSingletonConnector();
-		c1.createConnectionUsingSingletonConnector();
-		*/
-
+		System.out.println("Using singleton object");
 		
+//		Client c2 = new Client();
+//		c2.createConnectionUsingSingletonConnector();
+//		c2.createConnectionUsingSingletonConnector();
+//		c2.createConnectionUsingSingletonConnector();
+//		c2.createConnectionUsingSingletonConnector();
+//		c2.createConnectionUsingSingletonConnector();
+//		c1.createConnectionUsingSingletonConnector();
+		
+		Client c2 = new Client();
+		
+		//checking with multithreaded environment
+		Thread t1 = new Thread(){
+			public void run(){
+				
+				c2.createConnectionUsingSingletonConnector();
+				c2.createConnectionUsingSingletonConnector();
+				c2.createConnectionUsingSingletonConnector();
+				//shows abnormal behaviour as the createConnectionUsingNormalConnector() is not synchronized
+				c1.createConnectionUsingNormalConnector();
+			}
+		};
+
+		Thread t2 = new Thread(){
+			public void run(){
+				c2.createConnectionUsingSingletonConnector();
+				c2.createConnectionUsingSingletonConnector();
+				c2.createConnectionUsingSingletonConnector();
+				
+			}
+		};
+		
+		t1.start();
+		t2.start();
 	}
 }
 

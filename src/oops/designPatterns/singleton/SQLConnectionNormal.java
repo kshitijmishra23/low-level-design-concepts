@@ -13,9 +13,10 @@ public class SQLConnectionNormal {
 		
 			String connectionUrl = "jdbc:mysql://localhost:3306/development";
 			try {
-			connection  =  DriverManager.getConnection(connectionUrl,"root","");
+				connection  =  DriverManager.getConnection(connectionUrl,"root","");
 			}
 			catch(SQLException e) {
+				System.out.println("not successfull");
 				e.printStackTrace();
 			}
 		

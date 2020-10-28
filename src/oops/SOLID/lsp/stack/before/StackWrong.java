@@ -14,29 +14,47 @@ import java.util.ArrayList;
  * so objects of ArrayList are not fully replaceable by the objects of stack.   
  * 
  */
-public class StackWrong extends ArrayList<Integer>{
-	private int topPointer = 0;
+public class StackWrong<Type>{
 	
-	public void push(Integer a) {
-		add(topPointer, a);
+	private int topPointer;
+	// using the composition type instead of inheriting the properties
+	private ArrayList<Type> data;
+	
+	public StackWrong(){
+		topPointer = 0;
+		this.data = new ArrayList<>();
+	}
+	
+	public void push(Type a) {
+		data.add(topPointer, a);
 		topPointer++;
 	}	
 	public void pop() {
-		remove(topPointer-1);
-		topPointer--;
+		data.remove(this.topPointer-1);
+		this.topPointer--;
 	}
-	public Integer top() {
-		return get(topPointer-1);
+	
+	public Type top() throws Exception {
+		
+		if(topPointer-1 < 0)
+			throw new Exception();
+		return data.get(topPointer-1);
 	}
 	
 	public static void main(String[] args) {
-		StackWrong st = new StackWrong();
-		st.push(1);
-		st.push(2);
-		System.out.println(st.top());
-		st.pop();
-		System.out.println(st.top());
-		st.clear();
-		System.out.println(st.top());
+		StackWrong<Integer> st = new StackWrong<Integer>();
+		try{
+			st.push(1);
+			st.push(2);
+			System.out.println(st.top());
+			st.pop();
+			System.out.println(st.top());
+			//Not applicable
+			//st.clear();
+			st.pop();
+			System.out.println(st.top());
+		}catch(Exception e){
+			System.out.print("Tried to access the data that is not available ");
+		}
 	}
 }
