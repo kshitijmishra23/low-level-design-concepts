@@ -10,7 +10,7 @@ class EmployeeCSVAdapter implements Employee{
 	}
 
 	public String getFirstName() {
-		return e.getId();
+		return e.getFirstname();
 	}
 
 	public String getLastName() {
