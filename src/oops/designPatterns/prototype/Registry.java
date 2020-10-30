@@ -49,7 +49,7 @@ public class Registry {
 		book.setTitle("Basic Book");
 		items.put("Book", book);
 	}
-	private static Registry getInstance(){
+	public static Registry getInstance(){
 		if (itemRegistry == null)
 			itemRegistry = new Registry();
 		return itemRegistry;
