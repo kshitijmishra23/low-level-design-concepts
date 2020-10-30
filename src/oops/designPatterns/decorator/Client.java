@@ -12,7 +12,7 @@ public class Client {
 
 	public static void main(String[] args) {
 		
-		/*
+		
 		VisualComponent textBox = new TextView("This is the text of my text-box");
 		VisualComponent textBoxWithBorder = new BorderDecorator(textBox);
 		VisualComponent textBoxWithScroll = new ScrollDecorator(textBoxWithBorder);
@@ -20,7 +20,7 @@ public class Client {
 		
 		textBoxWithScroll.draw();
 		
-		*/
+		
 		
 		Beverage coffee = new Cappuccino();
 		System.out.println(coffee.cost());
