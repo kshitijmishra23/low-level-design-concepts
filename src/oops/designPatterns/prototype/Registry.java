@@ -11,17 +11,29 @@ import oops.designPatterns.prototype.items.Movie;
 //Singleton
 public class Registry {
 
+	private static Registry registryObject = null;
 	private Map<String, Item> items = new HashMap<String, Item>();
 	
-	public Registry() {
+	private Registry() {
 		loadItems();
+	}
+	
+	public static Registry getInstance() {
+		if(registryObject == null) {
+			registryObject = new Registry();
+		}
+		return registryObject;
 	}
 	
 	public Item createItem (String type) {
 		Item item = null;
 		
 		try {
-			item = (Item)(items.get(type)).clone();
+			if(items.get(type) != null)
+				item = (Item)(items.get(type)).clone();
+			else
+				System.out.println("Item of type "+ type + "  not present");
+			
 		}
 		catch (CloneNotSupportedException e) {
 			e.printStackTrace();
