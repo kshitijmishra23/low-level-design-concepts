@@ -1,4 +1,6 @@
-package oops.SOLID.singleResponsibilityPrinciple.before;
+package oops.SOLID.singleResponsibilityPrinciple.before.model;
+
+import oops.SOLID.singleResponsibilityPrinciple.before.model.Employee;
 
 public class PartTimeEmployee extends Employee {
     public PartTimeEmployee(String fullName, int monthlyIncome) {
