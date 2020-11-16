@@ -1,6 +1,8 @@
 package oops.SOLID.lsp.stack.before;
 
 import java.util.ArrayList;
+import java.util.List;
+
 /*
  * Stack is-a list with push() pop() methods.
  * So can we create a stack by extending an ArrayList class?
@@ -14,21 +16,22 @@ import java.util.ArrayList;
  * so objects of ArrayList are not fully replaceable by the objects of stack.   
  * 
  */
-public class StackWrong extends ArrayList<Integer>{
+public class StackWrong {
 	private int topPointer = 0;
+	private List<Integer> stackList = new ArrayList<>();
 	
 	public void push(Integer a) {
-		add(topPointer, a);
-		topPointer++;
-	}	
+		stackList.add(topPointer++, a);
+	}
+
 	public void pop() {
-		remove(topPointer-1);
-		topPointer--;
+		if(topPointer > 0)
+		stackList.remove(--topPointer);
 	}
 	public Integer top() {
-		return get(topPointer-1);
+		return topPointer;
 	}
-	
+
 	public static void main(String[] args) {
 		StackWrong st = new StackWrong();
 		st.push(1);
@@ -36,7 +39,6 @@ public class StackWrong extends ArrayList<Integer>{
 		System.out.println(st.top());
 		st.pop();
 		System.out.println(st.top());
-		st.clear();
 		System.out.println(st.top());
 	}
 }
