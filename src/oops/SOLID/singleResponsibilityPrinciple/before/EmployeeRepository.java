@@ -1,9 +1,15 @@
 package oops.SOLID.singleResponsibilityPrinciple.before;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
 public class EmployeeRepository {
+
+  private static Logger logger = new Logger(EmployeeRepository.class);
 
     public List<Employee> findAll(){
 
@@ -15,5 +21,11 @@ public class EmployeeRepository {
         Employee magda = new PartTimeEmployee("Magda Iovan", 920);
 
         return Arrays.asList(anna, billy, steve, magda);
-    }
+  }
+
+  public static void save(Employee employee) throws IOException {
+      String serializedEmployee = EmployeeSerializer.serialize(employee);
+      PersistenceManager.persist(employee.getFullName(), serializedEmployee);
+      logger.log("Saved employee " + employee);
+  }
 }
