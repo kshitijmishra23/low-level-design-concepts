@@ -3,7 +3,7 @@ package oops.SOLID.openClosePrinciple.before.employees;
 /*
 Models an employee form a business perspective
  */
-public abstract class Employee {
+public abstract class Employee{
     private String firstName;
     private String lastName;
     private int monthlyIncome;
