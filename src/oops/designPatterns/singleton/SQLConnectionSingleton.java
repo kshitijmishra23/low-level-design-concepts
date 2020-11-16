@@ -17,7 +17,7 @@ public class SQLConnectionSingleton {
 	
 	public static SQLConnectionSingleton getInstance() {
 		if(instance == null) {
-			instance = new SQLConnectionSingleton();
+			instance = SqlConnectionSingletonInstanceProvider.INSTANCE;
 		}
 		return instance;
 	}
@@ -34,8 +34,17 @@ public class SQLConnectionSingleton {
 		}
 		return connection;
 	}
-	/*public Connection getConnection() {
-		return connection;
+	
+	/**
+	 * Private inner static class to provide the object.
+	 * This also works in multi-threaded environment as a class is loaded
+	 * only once.
+	 * @author Kalyan
+	 *
+	 */
+	private static class SqlConnectionSingletonInstanceProvider {
+		
+		private static SQLConnectionSingleton INSTANCE = new SQLConnectionSingleton();
+		
 	}
-	*/
 } 
