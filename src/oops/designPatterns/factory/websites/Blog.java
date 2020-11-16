@@ -10,6 +10,7 @@ public class Blog extends Website {
 
 	@Override
 	public void createWebsite() {
+		System.out.println("blog is created");
 		pages.add(new PostPage());
 		pages.add(new AboutPage());
 		pages.add(new CommentPage());

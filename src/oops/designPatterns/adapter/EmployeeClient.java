@@ -4,12 +4,8 @@ package oops.designPatterns.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import oops.designPatterns.adapter.employeeAdapters.EmployeeAdapterCSV;
-import oops.designPatterns.adapter.employeeAdapters.EmployeeAdapterLdap;
-import oops.designPatterns.adapter.employees.Employee;
-import oops.designPatterns.adapter.employees.EmployeeCSV;
-import oops.designPatterns.adapter.employees.EmployeeDB;
-import oops.designPatterns.adapter.employees.EmployeeLdap;
+
+import oops.designPatterns.adapter.employees.*;
 
 public class EmployeeClient {
 
@@ -17,7 +13,7 @@ public class EmployeeClient {
 	
 		List<Employee> employees = new ArrayList<>();
 		
-		Employee employeeFromDB = new EmployeeDB("1234", "John", "Wick", "john@wick.com");
+		EmployeeDB employeeFromDB = new EmployeeDB("1234", "John", "Wick", "john@wick.com");
 		
 		EmployeeLdap employeeFromLdap = new EmployeeLdap("chewie", "Solo", "Han", "han@solo.com");		
 		
@@ -25,8 +21,15 @@ public class EmployeeClient {
 		
 		//We have to add the data of all the employees to the employees list
 		//But it only accepts objects of type Employee
-		
-		
+		Employee employeeCsv = new EmployeeCsvAdapter(employeeFromCSV);
+		Employee employeeLdap = new EmployeeLdapAdapter(employeeFromLdap);
+		Employee employeeDb =  new EmployeDBAdapter(employeeFromDB);
+
+		employees.add(employeeCsv);
+		employees.add(employeeDb);
+		employees.add(employeeLdap);
+
+
 		return employees;
 		
 	}

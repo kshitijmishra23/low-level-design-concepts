@@ -8,6 +8,7 @@ public class Shop extends Website {
 
 	@Override
 	public void createWebsite() {
+		System.out.println("shop is created");
 		pages.add(new CartPage());
 		pages.add(new ItemPage());
 		pages.add(new SearchPage());

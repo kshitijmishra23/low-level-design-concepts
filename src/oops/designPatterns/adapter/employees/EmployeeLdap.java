@@ -1,7 +1,7 @@
 package oops.designPatterns.adapter.employees;
 
 
-public class EmployeeLdap {
+public class EmployeeLdap implements Employee {
 
 	private String cn;
 	private String surname;
@@ -38,5 +38,25 @@ public class EmployeeLdap {
 	}
 	public void setMail(String mail) {
 		this.mail = mail;
-	}	
+	}
+
+	@Override
+	public String getId() {
+		return cn;
+	}
+
+	@Override
+	public String getFirstName() {
+		return givenName;
+	}
+
+	@Override
+	public String getLastName() {
+		return surname;
+	}
+
+	@Override
+	public String getEmail() {
+		return mail;
+	}
 }
