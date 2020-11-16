@@ -5,31 +5,34 @@ import java.util.List;
 import java.util.Locale;
 
 import oops.SOLID.openClosePrinciple.before.employees.Employee;
+import oops.SOLID.openClosePrinciple.before.employees.FullTimeEmployee;
+import oops.SOLID.openClosePrinciple.before.employees.Intern;
+import oops.SOLID.openClosePrinciple.before.employees.PartTimeEmployee;
 import oops.SOLID.openClosePrinciple.before.persistence.EmployeeRepository;
+import oops.SOLID.openClosePrinciple.before.taxes.FullTimeEmployeeTaxCalculator;
+import oops.SOLID.openClosePrinciple.before.taxes.InternTaxCalculator;
+import oops.SOLID.openClosePrinciple.before.taxes.PartTimeEmployeeTaxCalculator;
 import oops.SOLID.openClosePrinciple.before.taxes.TaxCalculator;
+import oops.SOLID.openClosePrinciple.before.taxes.TaxCalculatorFactory;
 
 
 public class CalculateTaxesClient {
     public static void main(String[] args) {
-       
-        EmployeeRepository repository = new EmployeeRepository();
-
-        // Grab employees
-        List<Employee> employees = repository.findAll();
+        final TaxCalculatorFactory taxCalculatorFactory = getTaxCalculatorFactory();
+        final EmployeeRepository repository = new EmployeeRepository();
 
         // Calculate taxes
-        Locale locale = new Locale("en", "US");
-        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
-        TaxCalculator taxCalculator = new TaxCalculator();
+        double totalTaxes = repository.findAll().stream()
+            .map(employee -> taxCalculatorFactory.getTaxCalculator(employee.getClass().getTypeName())
+                .calculate(employee))
+            .reduce(0.0, Double::sum);
+    }
 
-        double totalTaxes = 0;
-        for (Employee employee: employees){
-
-            // compute individual tax
-            double tax = taxCalculator.calculate(employee);
-            String formattedTax = currencyFormatter.format(tax);
-            // add to company total taxes
-            totalTaxes += taxCalculator.calculate(employee);
-        }
+    private static TaxCalculatorFactory getTaxCalculatorFactory() {
+        final TaxCalculatorFactory factory = new TaxCalculatorFactory();
+        factory.register(FullTimeEmployee.class.getTypeName(), new FullTimeEmployeeTaxCalculator());
+        factory.register(PartTimeEmployee.class.getTypeName(), new PartTimeEmployeeTaxCalculator());
+        factory.register(Intern.class.getTypeName(), new InternTaxCalculator());
+        return factory;
     }
 }
