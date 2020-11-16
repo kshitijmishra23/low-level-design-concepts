@@ -9,8 +9,12 @@ public class SaveEmployeesMain {
         List<Employee> employees = repository.findAll();
 
         // Save all
-        for (Employee e : employees){
-            Employee.save(e);
+        for (Employee emp : employees){
+            try {
+                repository.save(emp);
+            } catch(Exception exc) {
+                System.out.println("Error occurred while persisting the employee: " + exc);
+            }
         }
     }
 }

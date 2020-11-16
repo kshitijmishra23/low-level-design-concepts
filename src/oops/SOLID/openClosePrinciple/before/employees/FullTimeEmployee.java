@@ -5,4 +5,8 @@ public class FullTimeEmployee extends Employee {
         super(fullName, monthlyIncome);
         this.setNbHoursPerWeek(40);
     }
+
+    public EmployeeType getEmployeeType() {
+        return EmployeeType.FULL_TIME;
+    }
 }
