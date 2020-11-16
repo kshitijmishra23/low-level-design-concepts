@@ -5,7 +5,7 @@ import java.util.List;
 
 public class EmployeeRepository {
 
-    public List<Employee> findAll(){
+    public List<Employee> findAll() {
 
         // Employees are kept in memory for simplicity
         Employee anna = new FullTimeEmployee("Anna Smith", 2000);
