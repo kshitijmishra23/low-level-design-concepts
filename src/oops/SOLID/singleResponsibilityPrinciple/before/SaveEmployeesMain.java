@@ -9,8 +9,8 @@ public class SaveEmployeesMain {
         List<Employee> employees = repository.findAll();
 
         // Save all
-        for (Employee e : employees){
-            e.save();
+        for (Employee employee : employees){
+            EmployeeWriter.save(employee);
         }
     }
 }
