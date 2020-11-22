@@ -12,9 +12,17 @@ import oops.designPatterns.prototype.items.Movie;
 public class Registry {
 
 	private Map<String, Item> items = new HashMap<String, Item>();
+	private static Registry instance = null;
 	
-	public Registry() {
+	private Registry() {
 		loadItems();
+	}
+
+	public static Registry getInstance(){
+		if (instance == null){
+			instance = new Registry();
+		}
+		return instance;
 	}
 	
 	public Item createItem (String type) {

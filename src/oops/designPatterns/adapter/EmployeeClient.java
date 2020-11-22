@@ -8,6 +8,8 @@ import oops.designPatterns.adapter.employees.Employee;
 import oops.designPatterns.adapter.employees.EmployeeCSV;
 import oops.designPatterns.adapter.employees.EmployeeDB;
 import oops.designPatterns.adapter.employees.EmployeeLdap;
+import oops.designPatterns.adapter.employeeAdapters.AdapterEmployeeCSV;
+import oops.designPatterns.adapter.employeeAdapters.AdapterEmployeeLdap;
 
 public class EmployeeClient {
 
@@ -17,9 +19,9 @@ public class EmployeeClient {
 		
 		Employee employeeFromDB = new EmployeeDB("1234", "John", "Wick", "john@wick.com");
 		
-		EmployeeLdap employeeFromLdap = new EmployeeLdap("chewie", "Solo", "Han", "han@solo.com");		
+		EmployeeLdap employeeFromLdap = new AdapterEmployeeLdap(new EmployeeLdap("chewie", "Solo", "Han", "han@solo.com"));		
 		
-		EmployeeCSV employeeFromCSV = new EmployeeCSV("567,Sherlock,Holmes,sherlock@holmes.com");
+		EmployeeCSV employeeFromCSV = new AdapterEmployeeCSV(EmployeeCSV("567,Sherlock,Holmes,sherlock@holmes.com"));
 		
 		//We have to add the data of all the employees to the employees list
 		//But it only accepts objects of type Employee
