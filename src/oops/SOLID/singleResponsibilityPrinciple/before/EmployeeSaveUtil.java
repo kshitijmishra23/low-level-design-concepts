@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class SaveEmployeeUtil {
+public class EmployeeSaveUtil {
 
 	public static void saveData(Employee employee) {
 		try {
