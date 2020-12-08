@@ -65,6 +65,7 @@ public abstract class Employee {
 
     public  void save(){
         try {
+            /*
         	Employee employee =this;
             StringBuilder sb = new StringBuilder();
             sb.append("### EMPLOYEE RECORD ####");
@@ -87,6 +88,8 @@ public abstract class Employee {
             Files.write(path, sb.toString().getBytes());
 
             System.out.println("Saved employee " + employee.toString());
+            */
+            EmployeeSaveUtil.saveData(this);
         } catch (IOException e){
             System.out.println("ERROR: Could not save employee. " + e);
         }
