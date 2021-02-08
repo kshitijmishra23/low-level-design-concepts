@@ -23,11 +23,21 @@ public class StackRight {
 		topPointer = -1;
 	}
 
-	public void push(int a) {
+	public void push(int a) throws Exception {
+		if (topPointer == array.length - 1) {
+			throw new Exception("Stack is full!");
+		}
+
 		array[++topPointer] = a;
+
 	}
 
-	public int pop() {
+	public int pop() throws Exception {
+
+		if (topPointer == -1) {
+			throw new Exception("Stack is Empty!");
+		}
+
 		int x = array[topPointer];
 		topPointer = topPointer - 1;
 		return x;
@@ -40,7 +50,7 @@ public class StackRight {
 		return array[topPointer];
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		StackRight st = new StackRight(100);
 		st.push(1);
 		st.push(2);
