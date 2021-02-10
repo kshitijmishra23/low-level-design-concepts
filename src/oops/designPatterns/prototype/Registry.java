@@ -13,9 +13,21 @@ public class Registry {
 
 	private Map<String, Item> items = new HashMap<String, Item>();
 	
-	public Registry() {
+	private static Registry instance = null;
+	
+	private Registry() {
 		loadItems();
 	}
+	
+	public static Registry getInstance() {
+
+		if (instance == null) {
+			instance = new Registry();
+		}
+
+		return instance;
+	}
+	
 	
 	public Item createItem (String type) {
 		Item item = null;
