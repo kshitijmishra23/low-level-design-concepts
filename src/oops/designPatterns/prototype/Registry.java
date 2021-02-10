@@ -13,9 +13,30 @@ public class Registry {
 
 	private Map<String, Item> items = new HashMap<String, Item>();
 	
-	public Registry() {
+	private static volatile Registry instance;
+
+	private static Object mutex = new Object();
+	
+	private Registry() {
 		loadItems();
 	}
+
+	public static Registry getInstance() {
+
+		Registry result = instance;
+
+		if (result == null) {
+			synchronized (mutex) {
+				result = instance;
+				if (result == null) {
+					instance = result = new Registry();
+				}
+			}
+		}
+
+		return result;
+	}
+	
 	
 	public Item createItem (String type) {
 		Item item = null;
