@@ -13,19 +13,28 @@ public class Registry {
 
 	private Map<String, Item> items = new HashMap<String, Item>();
 	
-	private static Registry instance = null;
+	private static volatile Registry instance;
+
+	private static Object mutex = new Object();
 	
 	private Registry() {
 		loadItems();
 	}
-	
+
 	public static Registry getInstance() {
 
-		if (instance == null) {
-			instance = new Registry();
+		Registry result = instance;
+
+		if (result == null) {
+			synchronized (mutex) {
+				result = instance;
+				if (result == null) {
+					instance = result = new Registry();
+				}
+			}
 		}
 
-		return instance;
+		return result;
 	}
 	
 	
