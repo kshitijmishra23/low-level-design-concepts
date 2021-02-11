@@ -11,9 +11,18 @@ import oops.designPatterns.prototype.items.Movie;
 //Singleton
 public class Registry {
 
+	private static Registry registryInstance=null;
+	
 	private Map<String, Item> items = new HashMap<String, Item>();
 	
-	public Registry() {
+	public static synchronized Registry getRegistry() {	
+		//Added snychronized for thread safety
+		if(registryInstance==null)
+			registryInstance=new Registry();
+		return registryInstance;
+	}
+	
+	private Registry() {
 		loadItems();
 	}
 	
