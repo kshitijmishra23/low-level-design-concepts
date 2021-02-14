@@ -1,34 +1,38 @@
 package oops.SOLID.lsp.stack.before;
 
 import java.util.ArrayList;
-/*
- * Stack is-a list with push() pop() methods.
- * So can we create a stack by extending an ArrayList class?
- * 
- * No! This implementation violates the Liskov Substitution Principle.
- * Which states that 
- * "Objects in a program should be replaceable with instances of their subtypes
- * without altering the correctness of that program."
- * 
- * In this case ArrayList has multiple methods which stack is not supposed to have (ex clear(), get(i) etc)
- * so objects of ArrayList are not fully replaceable by the objects of stack.   
- * 
- */
-public class StackWrong extends ArrayList<Integer>{
-	private int topPointer = 0;
-	
+import java.io.IOException;
+
+public class StackWrong {
+	ArrayList<Integer> st = new ArrayList<Integer>();
+	private int topPointer = -1;
+
 	public void push(Integer a) {
-		add(topPointer, a);
+		st.add(a);
 		topPointer++;
-	}	
+	}
 	public void pop() {
-		remove(topPointer-1);
-		topPointer--;
+		if( topPointer >= 0 ){
+			st.remove(topPointer);
+			topPointer--;
+			return ;
+		}
+		else{
+			System.out.println("stack is empty, cannot pop");
+			return;
+		}
 	}
 	public Integer top() {
-		return get(topPointer-1);
+			if( topPointer >= 0 )
+			{
+				return st.get(topPointer);
+			}
+			else
+			{
+				System.out.println("cannot return top because stack is empty");
+				return -1;
+			}
 	}
-	
 	public static void main(String[] args) {
 		StackWrong st = new StackWrong();
 		st.push(1);
@@ -36,7 +40,8 @@ public class StackWrong extends ArrayList<Integer>{
 		System.out.println(st.top());
 		st.pop();
 		System.out.println(st.top());
-		st.clear();
+		st.pop();
 		System.out.println(st.top());
+		st.pop();
 	}
 }
