@@ -1,0 +1,35 @@
+package oops.SOLID.openClosePrinciple.after.client;
+
+import oops.SOLID.openClosePrinciple.after.employees.Employee;
+import oops.SOLID.openClosePrinciple.after.persistence.EmployeeRepository;
+import oops.SOLID.openClosePrinciple.after.taxes.TaxCalculator;
+
+import java.text.NumberFormat;
+import java.util.List;
+import java.util.Locale;
+
+
+public class CalculateTaxesClient {
+    public static void main(String[] args) {
+       
+        EmployeeRepository repository = new EmployeeRepository();
+
+        // Grab employees
+        List<Employee> employees = repository.findAll();
+
+        // Calculate taxes
+        Locale locale = new Locale("en", "US");
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
+   
+
+        double totalTaxes = 0;
+        for (Employee employee: employees){
+
+            // compute individual tax
+            double tax = employee.TaxCalculate();
+            String formattedTax = currencyFormatter.format(tax);
+            // add to company total taxes
+            totalTaxes += tax;
+        }
+    }
+}
