@@ -57,5 +57,13 @@ public abstract class Employee {
     public String getFullName(){
         return this.firstName + " " + this.lastName;
     }
+
+    public boolean incomeLessThan(int incomeCap){
+        return this.monthlyIncome < incomeCap;
+    }
+
+    public double getMonthlyIncomePercentage(int incomeTaxPercentage){
+        return (this.monthlyIncome*incomeTaxPercentage)/100;
+    }
 }
 
