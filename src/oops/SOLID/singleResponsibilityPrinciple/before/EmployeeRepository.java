@@ -1,5 +1,9 @@
 package oops.SOLID.singleResponsibilityPrinciple.before;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,4 +20,24 @@ public class EmployeeRepository {
 
         return Arrays.asList(anna, billy, steve, magda);
     }
+
+    public void saveAll(List<Employee> list){
+        for (Employee e: list)
+            save(e);
+    }
+
+    public void save(Employee employee){
+        try {
+            String serialized =  employee.Serialize();
+
+            Path path = Paths.get(employee.getFullName()
+                    .replace(" ","_") + ".rec");
+            Files.write(path, serialized.getBytes());
+
+            System.out.println("Saved employee " + employee.toString());
+        } catch (IOException e){
+            System.out.println("ERROR: Could not save employee. " + e);
+        }
+    }
+
 }
