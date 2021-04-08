@@ -27,9 +27,11 @@ public class CalculateTaxesClient {
 
             // compute individual tax
             double tax = TaxCalculator.calculate(employee);
-            String formattedTax = currencyFormatter.format(tax);
-            // add to company total taxes
-            totalTaxes += TaxCalculator.calculate(employee);
+            totalTaxes += tax;
         }
+        String formattedTax = currencyFormatter.format(totalTaxes);
+        
+       
+        System.out.println("totalTaxes : \t" + formattedTax);
     }
 }
