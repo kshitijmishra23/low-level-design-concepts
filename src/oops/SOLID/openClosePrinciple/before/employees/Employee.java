@@ -8,6 +8,8 @@ public abstract class Employee {
     private String lastName;
     private int monthlyIncome;
     private int nbHoursPerWeek;
+    
+    public abstract double calculate();
 
     public Employee(String fullName, int monthlyIncome){
         setMonthlyIncome(monthlyIncome);
@@ -57,5 +59,6 @@ public abstract class Employee {
     public String getFullName(){
         return this.firstName + " " + this.lastName;
     }
+
 }
 

@@ -10,7 +10,7 @@ public class SaveEmployeesMain {
 
         // Save all
         for (Employee e : employees){
-            e.save();
+        	repository.save(e);
         }
     }
 }
