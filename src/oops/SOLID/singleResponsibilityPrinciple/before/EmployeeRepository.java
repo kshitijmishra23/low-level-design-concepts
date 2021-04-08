@@ -1,17 +1,19 @@
 package oops.SOLID.singleResponsibilityPrinciple.before;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class EmployeeRepository implements Repository<Employee>{
+public class EmployeeRepository {
 	
      List<Employee> employees = new ArrayList<Employee>();
-     private Save<Employee> save;
      
      
-	public EmployeeRepository(Save<Employee> save ){
-		this.save = save;
+	public EmployeeRepository(){
 		
 		  // Employees are kept in memory for simplicity
         Employee anna = new FullTimeEmployee("Anna Smith", 2000);
@@ -26,15 +28,25 @@ public class EmployeeRepository implements Repository<Employee>{
 			this.employees.addAll(Arrays.asList(employees));
 	}
 
-	@Override
     public List<Employee> findAll(){
         return employees;
     }
     
-	@Override
-	public void save(Employee... employees) {
-		save.saveRecord(employees);
-	}
+    public  void save(Employee... employees){
+        try {
+        	
+        	for (Employee employee : employees) {
+               
 
-	
+                Path path = Paths.get(employee.getFullName()
+                        .replace(" ","_") + ".rec");
+                Files.write(path, employee.employeeFormat().getBytes());
+
+                System.out.println("Saved employee " + employee.toString());
+        	}
+        	
+        } catch (IOException e){
+            System.out.println("ERROR: Could not save employee. " + e);
+        }
+    }
 }
