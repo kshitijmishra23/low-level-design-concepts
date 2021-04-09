@@ -14,19 +14,28 @@ import java.util.ArrayList;
  * so objects of ArrayList are not fully replaceable by the objects of stack.   
  * 
  */
-public class StackWrong extends ArrayList<Integer>{
+public class StackWrong {
 	private int topPointer = 0;
+	private ArrayList<Integer> arrayList = new ArrayList<>();
 	
 	public void push(Integer a) {
-		add(topPointer, a);
+		arrayList.add(topPointer, a);
 		topPointer++;
 	}	
 	public void pop() {
-		remove(topPointer-1);
+		if(topPointer == 0)
+			return;
+		arrayList.remove(topPointer-1);
 		topPointer--;
 	}
 	public Integer top() {
-		return get(topPointer-1);
+		if(topPointer == 0)
+			return -1;
+		return arrayList.get(topPointer-1);
+	}
+	public void clear() {
+		arrayList.clear();
+		topPointer = 0;
 	}
 	
 	public static void main(String[] args) {

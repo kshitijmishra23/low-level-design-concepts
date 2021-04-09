@@ -53,7 +53,7 @@ public abstract class Employee {
 
     public void setNbHoursPerWeek(int nbHoursPerWeek) {
         if(nbHoursPerWeek <= 0){
-            throw new IllegalArgumentException("Income must be positive");
+            throw new IllegalArgumentException("Number of working hours must be positive");
         }
 
         this.nbHoursPerWeek = nbHoursPerWeek;
@@ -63,32 +63,24 @@ public abstract class Employee {
         return this.firstName + " " + this.lastName;
     }
 
-    public  void save(){
-        try {
-        	Employee employee =this;
-            StringBuilder sb = new StringBuilder();
-            sb.append("### EMPLOYEE RECORD ####");
-            sb.append(System.lineSeparator());
-            sb.append("NAME: ");
-            sb.append(employee.firstName + " " + employee.lastName);
-            sb.append(System.lineSeparator());
-            sb.append("POSITION: ");
-            sb.append(employee.getClass().getTypeName());
-            sb.append(System.lineSeparator());
-            sb.append("EMAIL: ");
-            sb.append(employee.getEmail());
-            sb.append(System.lineSeparator());
-            sb.append("MONTHLY WAGE: ");
-            sb.append(employee.monthlyIncome);
-            sb.append(System.lineSeparator());
+    public String getDetails(){
+    	Employee employee = this;
+        StringBuilder sb = new StringBuilder();
+        sb.append("### EMPLOYEE RECORD ####");
+        sb.append(System.lineSeparator());
+        sb.append("NAME: ");
+        sb.append(employee.firstName + " " + employee.lastName);
+        sb.append(System.lineSeparator());
+        sb.append("POSITION: ");
+        sb.append(employee.getClass().getTypeName());
+        sb.append(System.lineSeparator());
+        sb.append("EMAIL: ");
+        sb.append(employee.getEmail());
+        sb.append(System.lineSeparator());
+        sb.append("MONTHLY WAGE: ");
+        sb.append(employee.monthlyIncome);
+        sb.append(System.lineSeparator());
 
-            Path path = Paths.get(employee.getFullName()
-                    .replace(" ","_") + ".rec");
-            Files.write(path, sb.toString().getBytes());
-
-            System.out.println("Saved employee " + employee.toString());
-        } catch (IOException e){
-            System.out.println("ERROR: Could not save employee. " + e);
-        }
+        return sb.toString();
     }
 }
