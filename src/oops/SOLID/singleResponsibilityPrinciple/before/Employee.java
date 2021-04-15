@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 Models an employee form a business perspective
  */
 public abstract class Employee {
+    private static final long serialVersionUID = 1L;
     private String firstName;
     private String lastName;
     private int monthlyIncome;
@@ -61,6 +62,10 @@ public abstract class Employee {
 
     public String getFullName(){
         return this.firstName + " " + this.lastName;
+    }
+
+    public String serialize() {
+        return EmployeeSerializer.serialize(this);
     }
 
 }

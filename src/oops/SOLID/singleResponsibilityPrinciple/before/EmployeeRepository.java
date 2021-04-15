@@ -19,7 +19,7 @@ public class EmployeeRepository implements Serializable {
 
     public void save(Employee employee) {
         try {
-            String serializedEmployeeObjectString = EmployeeSerializer.serialize(employee);
+            String serializedEmployeeObjectString = employee.serialize();
             Path path = Paths.get(employee.getFullName()
                     .replace(" ","_") + ".rec");
             Files.write(path, serializedEmployeeObjectString.getBytes());
