@@ -5,4 +5,9 @@ public class Intern extends Employee {
         super(fullName, monthlyIncome);
         setNbHoursPerWeek(nbHours);
     }
+
+    @Override
+    public double getTaxableAmount(){
+        InternTaxCalculator.calculate(this);
+    }
 }

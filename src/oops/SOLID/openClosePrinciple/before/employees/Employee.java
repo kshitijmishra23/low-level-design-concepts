@@ -3,7 +3,7 @@ package oops.SOLID.openClosePrinciple.before.employees;
 /*
 Models an employee form a business perspective
  */
-public abstract class Employee {
+public abstract class Employee extends ITaxable{
     private String firstName;
     private String lastName;
     private int monthlyIncome;
@@ -57,5 +57,7 @@ public abstract class Employee {
     public String getFullName(){
         return this.firstName + " " + this.lastName;
     }
+
+    public abstract double getTaxableAmount();
 }
 
