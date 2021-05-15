@@ -5,4 +5,9 @@ public class PartTimeEmployee extends Employee {
         super(fullName, monthlyIncome);
         this.setNbHoursPerWeek(20);
     }
+
+    @Override
+    public double getTaxableAmount(){
+        PartTimeEmployeeTaxCalculator.calculate(this);
+    }
 }
