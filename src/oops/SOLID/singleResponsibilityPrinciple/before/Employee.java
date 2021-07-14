@@ -63,10 +63,8 @@ public abstract class Employee {
         return this.firstName + " " + this.lastName;
     }
 
-    public  void save(){
-        try {
-        	Employee employee =this;
-            StringBuilder sb = new StringBuilder();
+    public String getEmpDataToStore(){
+        StringBuilder sb = new StringBuilder();
             sb.append("### EMPLOYEE RECORD ####");
             sb.append(System.lineSeparator());
             sb.append("NAME: ");
@@ -81,10 +79,21 @@ public abstract class Employee {
             sb.append("MONTHLY WAGE: ");
             sb.append(employee.monthlyIncome);
             sb.append(System.lineSeparator());
+            return sb.toString();
+    }
 
-            Path path = Paths.get(employee.getFullName()
+    public String getPath(){
+        Employee employee =this;
+        return Paths.get(employee.getFullName()
                     .replace(" ","_") + ".rec");
-            Files.write(path, sb.toString().getBytes());
+    }
+
+    public  void save(){
+        try {
+        	Employee employee =this;
+            Path path = employee.getPath();
+            String sb=employee.getEmpDataToStore();
+            Files.write(path, sb.getBytes());
 
             System.out.println("Saved employee " + employee.toString());
         } catch (IOException e){
