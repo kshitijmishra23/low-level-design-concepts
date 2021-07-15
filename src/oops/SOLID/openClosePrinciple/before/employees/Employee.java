@@ -57,5 +57,8 @@ public abstract class Employee {
     public String getFullName(){
         return this.firstName + " " + this.lastName;
     }
+
+    public abstract double getTax();
+
 }
 
