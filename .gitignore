@@ -1,0 +1,19 @@
+# intellij stuff
+.idea
+*.iml
+
+# eclipse stuff
+.project
+.settings
+.classpath
+.checkstyle
+.factorypath
+.fbExcludeFilterFile
+.pmd
+.pmdruleset.xml
+
+# build stuff
+*.bak
+target
+.DS_Store
+.class
