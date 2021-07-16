@@ -8,11 +8,13 @@ import oops.SOLID.DependencyInversionPrinciple.before.repositories.EmployeeFileR
 import oops.SOLID.DependencyInversionPrinciple.before.serielizer.EmployeeFileSerializer;
 
 public class PaymentProcessor {
+    private EmployeeFileSerializer serializer;
 
+    public PaymentProcessor(EmployeeFileSerializer serializer) {
+        this.serializer = serializer;
+    }
 
     public int sendPayments(){
-    	EmployeeFileSerializer serializer =
-                new EmployeeFileSerializer();
     	
     	EmployeeFileRepository employeeRepository = 
     			new EmployeeFileRepository(serializer);
