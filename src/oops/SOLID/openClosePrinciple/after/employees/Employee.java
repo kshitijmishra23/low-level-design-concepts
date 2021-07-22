@@ -10,6 +10,7 @@ public abstract class Employee {
     private String lastName;
     private int monthlyIncome;
     private int nbHoursPerWeek;
+    private iTaxCalculator taxCalulator;
 
     public Employee(String fullName, int monthlyIncome){
         setMonthlyIncome(monthlyIncome);
@@ -59,10 +60,6 @@ public abstract class Employee {
     public String getFullName(){
         return this.firstName + " " + this.lastName;
     }
-    public double calculateTax(Employee employee) {
-    	iTaxCalculator taxCalulator = null;
-    	return taxCalulator.calculateTax(employee);
-    	
-    }
+    public abstract double calculateTax(Employee employee);
 }
 
