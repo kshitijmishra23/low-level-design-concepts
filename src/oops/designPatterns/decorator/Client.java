@@ -5,8 +5,6 @@ import oops.designPatterns.decorator.beverages.Cappuccino;
 import oops.designPatterns.decorator.beverages.decorators.ChocolateDecorator;
 import oops.designPatterns.decorator.visualComponents.TextView;
 import oops.designPatterns.decorator.visualComponents.VisualComponent;
-import oops.designPatterns.decorator.visualComponents.decorators.BorderDecorator;
-import oops.designPatterns.decorator.visualComponents.decorators.ScrollDecorator;
 
 public class Client {
 
