@@ -10,7 +10,8 @@ public class SaveEmployeesMain {
 
         // Save all
         for (Employee e : employees){
-            e.save();
+            EmployeeDetailsPersistence edp = new EmployeeDetailsFilePersistence(e);
+            edp.save();
         }
     }
 }
