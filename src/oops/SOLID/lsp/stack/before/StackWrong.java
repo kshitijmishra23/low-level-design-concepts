@@ -40,3 +40,22 @@ public class StackWrong extends ArrayList<Integer>{
 		System.out.println(st.top());
 	}
 }
+
+
+class StackCorrect {
+	private int topPointer = 0;
+	private ArrayList<Integer> data = new ArrayList<Integer>();
+
+	public void push(Integer a) {
+		data.add(topPointer, a);
+		topPointer++;
+	}	
+	public void pop() {
+		data.remove(topPointer-1);
+		topPointer--;
+	}
+	public Integer top() {
+		return data.get(topPointer-1);
+	}
+
+}
