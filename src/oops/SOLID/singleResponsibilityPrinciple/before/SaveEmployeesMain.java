@@ -4,13 +4,14 @@ import java.util.List;
 
 public class SaveEmployeesMain {
     public static void main(String[] args) {
-        // Grab employees
+    	
         EmployeeRepository repository = new EmployeeRepository();
         List<Employee> employees = repository.findAll();
 
-        // Save all
+        PersistData persist;
         for (Employee e : employees){
-            e.save();
+            persist = new PersistEmployeeData(e);
+            persist.save();
         }
     }
 }
