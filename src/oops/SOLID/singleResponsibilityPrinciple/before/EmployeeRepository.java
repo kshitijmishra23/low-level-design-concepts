@@ -16,4 +16,14 @@ public class EmployeeRepository {
 
         return Arrays.asList(anna, billy, steve, magda);
     }
+
+    public void saveEmployee(Path path,StringBuilder sb){
+        try {
+            Files.write(path, sb.toString().getBytes());
+            System.out.println("Saved employee " + employee.toString());
+        } catch (IOException e){
+            System.out.println("ERROR: Could not save employee. " + e);
+        }
+
+    }
 }
