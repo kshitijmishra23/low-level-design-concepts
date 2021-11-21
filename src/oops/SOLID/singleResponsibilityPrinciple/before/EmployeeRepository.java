@@ -2,6 +2,7 @@ package oops.SOLID.singleResponsibilityPrinciple.before;
 
 import java.util.Arrays;
 import java.util.List;
+import java.nio.file.Path;
 
 public class EmployeeRepository {
 
@@ -15,5 +16,9 @@ public class EmployeeRepository {
         Employee magda = new PartTimeEmployee("Magda Iovan", 920);
 
         return Arrays.asList(anna, billy, steve, magda);
+    }
+
+    public void saveEmployee(Path path,StringBuilder sb){
+            filedb.save(path, sb.toString().getBytes())
     }
 }
