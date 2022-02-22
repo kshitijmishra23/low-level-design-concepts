@@ -5,22 +5,22 @@ import oops.designPatterns.prototype.items.Movie;
 public class PrototypeDemo {
 
 	public static void main(String[] args) {
-		Registry registry = new Registry();
-		Movie movie = (Movie) registry.createItem("Movie");
+		Registry registry = Registry.getInstance();
+		Movie movie = (Movie) registry.createItem("ArtMovie");
 		movie.setTitle("The Prestige");
 		
 		System.out.println(movie);
 		System.out.println(movie.getRuntime());
 		System.out.println(movie.getTitle());
-		System.out.println(movie.getUrl());
+		System.out.println(movie.getPrice());
 		
-		Movie anotherMovie =  (Movie) registry.createItem("Movie");
+		Movie anotherMovie =  (Movie) registry.createItem("ShortMovie");
 		anotherMovie.setTitle("Gang of Wassepur");
 		
 		System.out.println(anotherMovie);
 		System.out.println(anotherMovie.getRuntime());
 		System.out.println(anotherMovie.getTitle());
-		System.out.println(anotherMovie.getUrl());
+		System.out.println(anotherMovie.getPrice());
 	}
 
 }
