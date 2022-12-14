@@ -12,6 +12,6 @@ public class AdapterDemo {
 		
 		List<Employee> employees = client.getEmployeeList();
 		
-		System.out.println(employees);
+		employees.forEach(System.out::println);
 	}
 }

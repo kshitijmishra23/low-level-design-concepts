@@ -5,6 +5,9 @@ public class EmployeeLdap {
 
 	private String cn;
 	private String surname;
+
+
+
 	private String givenName;
 	private String mail;
 	
@@ -38,5 +41,15 @@ public class EmployeeLdap {
 	}
 	public void setMail(String mail) {
 		this.mail = mail;
-	}	
+	}
+
+	@Override
+	public String toString() {
+		return "EmployeeLdap{" +
+				"cn='" + cn + '\'' +
+				", surname='" + surname + '\'' +
+				", givenName='" + givenName + '\'' +
+				", mail='" + mail + '\'' +
+				'}';
+	}
 }
