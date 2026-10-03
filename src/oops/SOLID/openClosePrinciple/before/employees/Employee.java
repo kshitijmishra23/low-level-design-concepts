@@ -57,5 +57,11 @@ public abstract class Employee {
     public String getFullName(){
         return this.firstName + " " + this.lastName;
     }
+
+    // every employee will be returning the tax percentage in order as
+    // income tax
+    // professional tax
+    // education cess
+    public abstract List<Integer> getTaxDetails();
 }
 

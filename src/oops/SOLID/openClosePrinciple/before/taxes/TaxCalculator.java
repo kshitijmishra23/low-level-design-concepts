@@ -8,9 +8,11 @@ public class TaxCalculator {
 
 
     public static double calculate(Employee employee) {
+        List<Integer> taxDetails = employee.getTaxDetails();
         return 
-                (employee.getMonthlyIncome() * PROFESSIONAL_TAX_PERCENTAGE) / 100 +
-                (employee.getMonthlyIncome() * INCOME_TAX_PERCENTAGE) / 100;
+                (employee.getMonthlyIncome() * taxDetails.get(0)) / 100 +
+                (employee.getMonthlyIncome() * taxDetails.get(1)) / 100 +
+                (employee.getMonthlyIncome() * taxDetails.get(2)) / 100;
 
     }
 }

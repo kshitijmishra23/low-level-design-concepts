@@ -5,4 +5,11 @@ public class Intern extends Employee {
         super(fullName, monthlyIncome);
         setNbHoursPerWeek(nbHours);
     }
+
+    public List<Integer> getTaxDetails() {
+        // based on annual income\
+        this.getMonthlyIncome() * 12 < 300000 ? 
+        return List.of(0, 0, 0) : 
+        : return List.of(15, 0, 0); // income tax, professional tax, education cess
+    }
 }

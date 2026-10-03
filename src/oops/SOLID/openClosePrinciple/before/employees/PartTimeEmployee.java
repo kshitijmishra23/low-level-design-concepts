@@ -5,4 +5,8 @@ public class PartTimeEmployee extends Employee {
         super(fullName, monthlyIncome);
         this.setNbHoursPerWeek(20);
     }
+
+    public List<Integer> getTaxDetails() {
+        return List.of(20, 3, 1); // income tax, professional tax, education cess
+    }
 }
