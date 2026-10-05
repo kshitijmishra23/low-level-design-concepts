@@ -3,26 +3,27 @@ package oops.SOLID.DependencyInversionPrinciple.before.payments;
 import java.util.List;
 
 import oops.SOLID.DependencyInversionPrinciple.before.employees.Employee;
-import oops.SOLID.DependencyInversionPrinciple.before.notification.EmailSender;
-import oops.SOLID.DependencyInversionPrinciple.before.repositories.EmployeeFileRepository;
-import oops.SOLID.DependencyInversionPrinciple.before.serielizer.EmployeeFileSerializer;
+import oops.SOLID.DependencyInversionPrinciple.before.notification.NotificationService;
+import oops.SOLID.DependencyInversionPrinciple.before.repositories.EmployeeRepository;
 
 public class PaymentProcessor {
 
+    private final EmployeeRepository employeeRepository;
+    private final NotificationService notificationService;
 
-    public int sendPayments(){
-    	EmployeeFileSerializer serializer =
-                new EmployeeFileSerializer();
-    	
-    	EmployeeFileRepository employeeRepository = 
-    			new EmployeeFileRepository(serializer);
-    	
+    public PaymentProcessor(EmployeeRepository employeeRepository,
+                           NotificationService notificationService) {
+        this.employeeRepository = employeeRepository;
+        this.notificationService = notificationService;
+    }
+
+    public int sendPayments() {
         List<Employee> employees = employeeRepository.findAll();
         int totalPayments = 0;
 
-        for(Employee employee : employees){
+        for (Employee employee : employees) {
             totalPayments += employee.getMonthlyIncome();
-            EmailSender.notify(employee);
+            notificationService.notify(employee);
         }
 
         return totalPayments;

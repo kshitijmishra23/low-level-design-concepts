@@ -22,7 +22,7 @@ application we could use the database for persistence. In this demo,
 we are storing employees in the file system.
  */
 
-public class EmployeeFileRepository {
+public class EmployeeFileRepository implements EmployeeRepository {
     private EmployeeFileSerializer serializer;
 
     public EmployeeFileRepository(EmployeeFileSerializer serializer) {
