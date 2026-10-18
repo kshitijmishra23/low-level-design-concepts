@@ -6,8 +6,10 @@ import java.util.List;
 
 import oops.designPatterns.adapter.employees.Employee;
 import oops.designPatterns.adapter.employees.EmployeeCSV;
+import oops.designPatterns.adapter.employees.EmployeeCSVAdapter;
 import oops.designPatterns.adapter.employees.EmployeeDB;
 import oops.designPatterns.adapter.employees.EmployeeLdap;
+import oops.designPatterns.adapter.employees.EmployeeLDAPAdapter;
 
 public class EmployeeClient {
 
@@ -24,6 +26,9 @@ public class EmployeeClient {
 		//We have to add the data of all the employees to the employees list
 		//But it only accepts objects of type Employee
 		
+		employees.add(employeeFromDB);
+		employees.add(new EmployeeLDAPAdapter(employeeFromLdap));
+		employees.add(new EmployeeCSVAdapter(employeeFromCSV));
 		
 		return employees;
 		
